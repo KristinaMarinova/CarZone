@@ -1,0 +1,46 @@
+<div style="margin: 3em;">
+    <form>
+        <div style="display: flex; justify-content: space-between; margin: 2em;">
+            <div class="row">
+                <label class="col">Brand</label>
+                <app-async-select class="col"
+                                  restUrl="api/Brands/Select"
+                                  [(ngModel)]="filterObjectsModel.brand"
+                                  (ngModelChange)="filterModel.brandId = $event?.id"></app-async-select>
+            </div>
+
+            <div class="row">
+                <label class="col">Fuel</label>
+                <app-async-select class="col"
+                                  restUrl="api/Fuels/Select"
+                                  [(ngModel)]="filterObjectsModel.fuel"
+                                  (ngModelChange)="filterModel.fuelId = $event?.id"></app-async-select>
+            </div>
+            <div class="row">
+                <label class="col">Transmission</label>
+                <app-async-select class="col"
+                                  restUrl="api/Transmissions/Select"
+                                  [(ngModel)]="filterObjectsModel.transmission"
+                                  (ngModelChange)="filterModel.transmissionId = $event?.id">All</app-async-select>
+            </div>
+            <div class="row">
+                <label class="col">Color</label>
+                <app-async-select class="col"
+                                  restUrl="api/Colors/Select"
+                                  [(ngModel)]="filterObjectsModel.color"
+                                  (ngModelChange)="filterModel.colorId = $event?.id"></app-async-select>
+            </div>
+            <div class="row">
+                <label style="margin-right: 1em;">Model</label>
+                <input style="width: 11em;"
+                       [(ngModel)]="filterModel.model" />
+            </div>
+        </div>
+
+        <button class="btn btn-outline-dark form-group col-sm-12 offset-md-3 col-md-6"
+                style="margin-top: 1em;"
+                (click)="search()">
+            search
+        </button>
+    </form>
+</div>

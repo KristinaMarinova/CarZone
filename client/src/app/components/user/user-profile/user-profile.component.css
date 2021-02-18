@@ -1,0 +1,17 @@
+h1 {
+    text-align: center;
+    margin-top: 70px;
+    font-family: 'Audiowide';
+    margin-top: 2em;
+    margin-bottom: 1em;
+}
+
+p {
+    text-align: center;
+}
+.avatar {
+    vertical-align: middle;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+  }

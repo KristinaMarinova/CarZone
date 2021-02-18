@@ -1,0 +1,100 @@
+<button id="edit-btn"
+        type="button"
+        class="btn btn-outline-warning"
+        data-toggle="modal"
+        data-target="#exampleModal">
+    Edit
+</button>
+
+<div class="modal fade"
+     id="exampleModal"
+     tabindex="-1"
+     role="dialog"
+     aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog  modal-dialog-centered"
+         role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title"
+                    id="exampleModalLabel">Edit</h5>
+                <button type="button"
+                        class="close"
+                        data-dismiss="modal"
+                        aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <label>Img:</label>
+                    <input type="text"
+                           [(ngModel)]="currentCar.carPic">
+                </div>
+                <div class="row">
+                    <label>Brand:</label>
+                    <app-async-select restUrl="api/Brands/Select"
+                                      [(ngModel)]="currentCar.brand"
+                                      (ngModelChange)="currentCar.brandId = $event?.id">
+                    </app-async-select>
+                </div>
+                <div class="row">
+                    <label>Model:</label>
+                    <input type="text"
+                           [(ngModel)]="currentCar.model">
+                </div>
+                <div class="row">
+                    <label>Year:</label>
+                    <input type="number"
+                           [(ngModel)]="currentCar.year">
+                </div>
+                <div class="row">
+                    <label>Price:</label>
+                    <input type="number"
+                           [(ngModel)]="currentCar.price">
+                </div>
+                <div class="row">
+                    <label>Fuel:</label>
+                    <app-async-select restUrl="api/Fuels/Select"
+                                      [(ngModel)]="currentCar.fuel"
+                                      (ngModelChange)="currentCar.fuelId = $event?.id">
+                    </app-async-select>
+                </div>
+                <div class="row">
+                    <label>Transmission:</label>
+                    <app-async-select restUrl="api/Transmissions/Select"
+                                      [(ngModel)]="currentCar.transmission"
+                                      (ngModelChange)="currentCar.transmissionId = $event?.id">
+                    </app-async-select>
+                </div>
+                <div class="row">
+                    <label>Horsepower:</label>
+                    <input type="number"
+                           [(ngModel)]="currentCar.horsepower">
+                </div>
+                <div class="row">
+                    <label>Km:</label>
+                    <input type="number"
+                           [(ngModel)]="currentCar.km">
+                </div>
+                <div class="row">
+                    <label>Color:</label>
+                    <app-async-select restUrl="api/Colors/Select"
+                                      [(ngModel)]="currentCar.color"
+                                      (ngModelChange)="currentCar.colorId = $event?.id">
+                    </app-async-select>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button"
+                        class="btn btn-secondary"
+                        data-dismiss="modal">Close</button>
+                <button type="button"
+                        class="btn btn-success"
+                        ng-hide="hideDiv"
+                        (click)="editInfo()"
+                        data-dismiss="modal">Save</button>
+            </div>
+        </div>
+    </div>
+</div>

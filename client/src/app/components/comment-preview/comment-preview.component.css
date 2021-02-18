@@ -1,0 +1,19 @@
+#comment {
+    display: flex;
+    margin-bottom: 20px;
+    border-bottom-style: solid;
+    border-bottom-color: lightgrey;
+    border-width: thin;
+    padding-bottom: 20px;
+    max-height: 5em;
+}
+#profileImg {
+    margin-right: 20px;
+    padding-top: 21px;
+    width: 5em;
+    padding-top: 0px;
+}
+.btnDelete {
+    margin-top: 0px;
+    margin-left: 18px;
+}

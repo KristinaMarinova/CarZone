@@ -1,0 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=Audiowide&family=Yellowtail&display=swap');
+
+.carzone-footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    background-color: black;
+  }
+  
+  .footer-content {
+    display: flex;
+    align-items: center;
+  }
+  
+  .footer-content h3,
+  .footer-content i {
+    color: #66FCF1;
+    font-family: 'Audiowide';
+  }
+  
+  .footer-content i {
+    margin: 0 10px;
+    font-size: 23px;
+  }
+  
+  .rights p {
+    color: #66FCF1;
+    font-family: 'Audiowide';
+  }

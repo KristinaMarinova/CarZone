@@ -1,0 +1,62 @@
+@import url('https://fonts.googleapis.com/css2?family=Audiowide&family=Yellowtail&display=swap');
+h1 {
+    text-align: center;
+    margin-top: 70px;
+    font-family: 'Audiowide';
+}
+
+.card {
+    background-color: #333;
+    color: #fff;
+    margin: 1em;
+    object-fit: fill;
+}
+
+div a {
+    font-weight: 400;
+    font-size: large;
+    font-family: 'Audiowide';
+}
+
+a:link {
+    text-decoration: none;
+    color: white;
+}
+
+a:visited {
+    text-decoration: none;
+    color: white;
+}
+
+a:hover {
+    text-decoration: none;
+    color: white;
+}
+
+a:active {
+    text-decoration: none;
+    color: white;
+}
+
+#imgContainer {
+    height: 100%;
+    object-fit: contain;
+    max-height: 250px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+ngb-pagination ::ng-deep ul > li:not(.active) > a {
+    background-color: black !important;
+    color: #66fcf1 !important;
+}
+
+ngb-pagination ::ng-deep ul > li:not(.active) > a:hover {
+    color: white(0, 0, 0) !important;
+}
+
+ngb-pagination ::ng-deep ul > li.active > a {
+    background-color: #66fcf1!important;
+    color: black !important;
+    border-color:black !important;
+}

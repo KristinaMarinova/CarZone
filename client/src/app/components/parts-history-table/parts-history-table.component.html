@@ -1,0 +1,46 @@
+<div style="width: 34%;margin-left: auto;margin-right: auto;">
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col"
+                    style="width: 50%; font-family: Audiowide;">Part</th>
+                <th scope="col"
+                    style="width: 50%; font-family: Audiowide;">Description</th>
+                <th *ngIf="canEdit"
+                    style="display: flex;">
+                    <button type="button"
+                            class="btn btn-outline-dark"
+                            style="height: 30px; margin-right: 10px;font-family: Audiowide;"
+                            (click)="addRow()">
+                        Add</button>
+                    <button type="button"
+                            class="btn btn-outline-dark"
+                            style="height: 30px;font-family: Audiowide;"
+                            (click)="update()">
+                        Update</button>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of historyDetails, let i = index">
+                <ng-container *ngIf="!canEdit">
+                    <td>{{item.detail}}</td>
+                    <td>{{item.descriptionDetail}}</td>
+                </ng-container>
+
+                <ng-container *ngIf="canEdit">
+                    <td><input [(ngModel)]="item.detail" /></td>
+                    <td><input [(ngModel)]="item.descriptionDetail" /></td>
+                    <td>
+                        <button type="button"
+                                class="btn btn-outline-dark"
+                                style="height: 30px;"
+                                (click)="delete(i)">
+                            Delete</button>
+                    </td>
+                </ng-container>
+
+            </tr>
+        </tbody>
+    </table>
+</div>

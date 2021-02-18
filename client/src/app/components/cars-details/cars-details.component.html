@@ -1,0 +1,34 @@
+<div style="margin-bottom: 2em; margin-top:4em;min-height: 54em;">
+    <div id="divTitleButns">
+        <h4 id="title">{{currentCar.brand.name}} {{currentCar.model}} {{currentCar.year}} {{currentCar.price}} lv.</h4>
+        <div id="buttonActionsDiv">
+            <edit-car-btn [currentCar]="currentCar"
+                          *ngIf="canEdit"></edit-car-btn>
+            <delete-car-btn [currentCar]="currentCar"
+                            *ngIf="canEdit"></delete-car-btn>
+            <car-likes-btn style="display: inline-flex;"
+                           [car]="currentCar"
+                           [disabled]="canEdit"></car-likes-btn>
+        </div>
+    </div>
+
+    <div>
+        <div>
+            <div class="carPicture">
+                <img src="{{currentCar.carPic}}"
+                     style="max-height: 281px;"
+                     alt="image"
+                     onerror="this.src='https://www.pngitem.com/pimgs/m/53-534462_car-icons-pdf-car-icon-pdf-hd-png.png'">
+            </div>
+            <app-car-features [car]="currentCar"
+                              style="max-height: 281px; 
+                                font-family: Audiowide;"></app-car-features>
+        </div>
+    </div>
+
+    <parts-history-table [historyDetails]="historyDetails"
+                         [canEdit]="canEdit"
+                         [currentCar]="currentCar"></parts-history-table>
+
+    <app-comment [currentCar]="currentCar"></app-comment>
+</div>

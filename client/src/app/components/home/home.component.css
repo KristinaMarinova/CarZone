@@ -1,0 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Audiowide&family=Yellowtail&display=swap');
+div {
+    background-image: url('https://wallpapercave.com/wp/jAda0us.jpg');
+    margin-top: 3em;
+    height: 50em;
+    background-size: cover;
+}
+
+h1 {
+    font-family: 'Audiowide', cursive;
+    color: #66FCF1;
+    text-align: center;
+    text-shadow: 0 1px 1px #fff;
+}

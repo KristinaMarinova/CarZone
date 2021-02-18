@@ -1,0 +1,13 @@
+<ng-container *ngIf="!disabled">
+        <div style="display: inline-block;">
+                <button type="button"
+                        class="btn btn-outline-success"
+                        (click)="addLike()">Like
+                </button>
+        </div>
+        <label style="padding-left: 5px; padding-top: 12px;font-size: 0.8rem;">{{car.likesCount}}</label>
+</ng-container>
+<ng-container *ngIf="disabled">
+        <h5 style="padding-left: 5px; padding-top: 5px;font-weight: 100;">
+                Likes count: {{car.likesCount}}</h5>
+</ng-container>

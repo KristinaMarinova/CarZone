@@ -1,0 +1,13 @@
+.btn-outline-success{
+    font-family: Audiowide !important;
+    border-color: black;
+    color: black;
+    
+}
+
+.btn-outline-dark:hover{
+    font-family: Audiowide !important;
+    background-color: black !important;
+    border-color: black !important;
+    color: #66fcf1 !important;
+}

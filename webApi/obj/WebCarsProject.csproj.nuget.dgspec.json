@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\project\\webCars\\webApi\\WebCarsProject.csproj": {}
+    "D:\\project\\CarZone\\webApi\\WebCarsProject.csproj": {}
   },
   "projects": {
-    "D:\\project\\webCars\\webApi\\WebCarsProject.csproj": {
+    "D:\\project\\CarZone\\webApi\\WebCarsProject.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\project\\webCars\\webApi\\WebCarsProject.csproj",
+        "projectUniqueName": "D:\\project\\CarZone\\webApi\\WebCarsProject.csproj",
         "projectName": "WebCarsProject",
-        "projectPath": "D:\\project\\webCars\\webApi\\WebCarsProject.csproj",
+        "projectPath": "D:\\project\\CarZone\\webApi\\WebCarsProject.csproj",
         "packagesPath": "C:\\Users\\kristina.marinova\\.nuget\\packages\\",
-        "outputPath": "D:\\project\\webCars\\webApi\\obj\\",
+        "outputPath": "D:\\project\\CarZone\\webApi\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -41,6 +41,10 @@
       "frameworks": {
         "netcoreapp3.1": {
           "dependencies": {
+            "HtmlAgilityPack": {
+              "target": "Package",
+              "version": "[1.11.30, )"
+            },
             "Microsoft.AspNetCore.Authentication.JwtBearer": {
               "target": "Package",
               "version": "[3.1.10, )"

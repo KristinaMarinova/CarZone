@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using WebCarsProject.Data;
 using WebCarsProject.Models;
 using WebCarsProject.Models.DTOs;
@@ -107,7 +108,7 @@ namespace WebCarsProject.Services
 
         public IEnumerable<CarDTO> GetUsersLikedCars()
         {
-            var result =  _context.Likes.Where(x => x.UserId == _userContext.UserId)
+            var result = _context.Likes.Where(x => x.UserId == _userContext.UserId)
                 .Select(e => new CarDTO
                 {
                     Id = e.CarId,
@@ -136,6 +137,35 @@ namespace WebCarsProject.Services
             car.CarPic = car.CarPic.Trim();
         }
 
+        public IEnumerable<newCarDTO> GetNewCars()
+        {
+            HtmlAgilityPack.HtmlWeb web = new HtmlAgilityPack.HtmlWeb();
+            HtmlAgilityPack.HtmlDocument doc = web.Load("https://www.cars.bg/");
+            var HeaderName = doc.DocumentNode.SelectNodes("//a[@class='d-grid no-decoration']").ToList();
+
+            var carsList = new List<newCarDTO>();
+
+            foreach (var item in HeaderName)
+            {
+                var i = item.InnerText.Replace("\n", string.Empty);
+                //i = i.Replace("\n", string.Empty);
+                string[] splittedPost = Regex.Split(i, @"(?<price>[0-9]+,[0-9]+ лв.\s)(?<brand>[a-zA-Z]+-[a-zA-Z]+\s[a-zA-Z]+\s[0-9]+\s[0-9].[0-9]\s?\D+\d*\s?\d*\s\d*),\s?(?<fuel>\S+),\s?(?<description>\S+(?:...)+).?");
+
+                //^\s + (?< price >[0 - 9] +,[0 - 9] + лв.\s)\s + (?< brand >\S +\s +\S +\s +\S +)\s +\S +\s + (?< fuel >\S +),\s + (?< km >\S +\s +\S +)\s + (?< description > (\S +\s){ 1,})\s +
+
+
+carsList.Add(new newCarDTO
+                {
+                    Price = splittedPost[0],
+                    Brand = splittedPost[1],
+                    Fuel = splittedPost[2],
+                    Km = splittedPost[3],
+                    Description = splittedPost[4]
+                });
+            }
+
+            return carsList;
+        }
     }
 
     public static class CarQueryExtensions

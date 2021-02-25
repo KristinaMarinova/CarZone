@@ -13,6 +13,10 @@ export class CarsService {
     private http: HttpClient,
   ) { }
 
+  getNewCars(): Observable<any> {
+    return this.http.get('api/Cars/new');
+  }
+
   getAll(): Observable<any> {
     return this.http.get('api/Cars');
   }

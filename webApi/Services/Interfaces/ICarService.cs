@@ -8,6 +8,7 @@ namespace WebCarsProject.Services
     public interface ICarService
     {
         IEnumerable<CarDTO> GetAllCars();
+        IEnumerable<newCarDTO> GetNewCars();
         CarDTO GetCarById(int id);
         void IncrementViews(int id);
         Car AddCar(Car car);
@@ -17,6 +18,5 @@ namespace WebCarsProject.Services
         public int GetCountOfViews(int carId);
         IEnumerable<CarDTO> GetUsersLikedCars();
 
-        //int GetCommentsByCarId(int carId);
     }
 }

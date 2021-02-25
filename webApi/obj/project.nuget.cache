@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "ycKNmuktCF8CUf5Bv+OAeGufI1zpF+s0DNF9OOdpckQn/1ukJ+ObvdYMBBs6bd+fJMzNoSI50lC9nNZKEHmgIg==",
+  "dgSpecHash": "S/M8h25UBFIhWECaHI3BnVHj7psJKdnCS16BJGrGXnATZk0E8NhbMC/HHD3fSQ8gyqQVxIh75IvQK1XFzB50uQ==",
   "success": true,
-  "projectFilePath": "D:\\project\\webCars\\webApi\\WebCarsProject.csproj",
+  "projectFilePath": "D:\\project\\CarZone\\webApi\\WebCarsProject.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\kristina.marinova\\.nuget\\packages\\htmlagilitypack\\1.11.30\\htmlagilitypack.1.11.30.nupkg.sha512",
     "C:\\Users\\kristina.marinova\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\3.1.10\\microsoft.aspnetcore.authentication.jwtbearer.3.1.10.nupkg.sha512",
     "C:\\Users\\kristina.marinova\\.nuget\\packages\\microsoft.aspnetcore.jsonpatch\\3.1.0\\microsoft.aspnetcore.jsonpatch.3.1.0.nupkg.sha512",
     "C:\\Users\\kristina.marinova\\.nuget\\packages\\microsoft.aspnetcore.mvc.newtonsoftjson\\3.1.0\\microsoft.aspnetcore.mvc.newtonsoftjson.3.1.0.nupkg.sha512",

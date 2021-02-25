@@ -33,6 +33,7 @@ import { CommentPreviewComponent } from './components/comment-preview/comment-pr
 import { PartsHistoryTableComponent } from './components/parts-history-table/parts-history-table.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { LikedCarsBtnComponent } from './components/liked-cars-btn/liked-cars-btn.component';
+import { NewCarsComponent } from './components/new-cars/new-cars.component';
 
 
 @NgModule({
@@ -59,6 +60,7 @@ import { LikedCarsBtnComponent } from './components/liked-cars-btn/liked-cars-bt
     CommentPreviewComponent,
     PartsHistoryTableComponent,
     LikedCarsBtnComponent,
+    NewCarsComponent,
   ],
   imports: [
     NgbModule,

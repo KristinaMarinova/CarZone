@@ -9,12 +9,14 @@ import { UserProfileComponent } from './components/user/user-profile/user-profil
 import { CarResolver } from './services/car.resolver';
 import { UserResolver } from './services/user-resolver';
 import { AuthGuardService } from './services/auth-guard-service';
+import { NewCarsComponent } from './components/new-cars/new-cars.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: '/', component: HomeComponent },
   { path: 'home', component: HomeComponent },
   { path: 'cars', component: CarsListComponent },
+  { path: 'newCars', component: NewCarsComponent },
   { path: 'cars/:id', component: CarsDetailsComponent, resolve: { car: CarResolver }, canActivate: [AuthGuardService] },
   { path: 'add', component: AddCarComponent, canActivate: [AuthGuardService] },
   { path: 'profile', component: UserProfileComponent, resolve: { user: UserResolver }, canActivate: [AuthGuardService] },

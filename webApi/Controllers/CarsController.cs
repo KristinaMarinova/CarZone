@@ -80,10 +80,17 @@ namespace WebCarsProject.Controllers
         }
 
         [HttpGet("new")]
-        [AllowAnonymous]
         public IEnumerable<newCarDTO> GetCarsFromSite()
         {
             return _carService.GetNewCars();
         }
+
+        [HttpGet("{id}/NewById")]
+        public newCarDTO GetNewCarById(string id)
+        {
+            return _carService.GetNewCarById(id);
+        }
+
+
     }
 }

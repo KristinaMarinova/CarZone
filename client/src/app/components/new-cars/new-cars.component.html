@@ -1,6 +1,8 @@
-<div style="margin-top: 4em;"
+<div style="margin-top: 4.5em;text-align-last: center;"
      *ngFor="let item of cars">
+    <p style="font-weight: bold;">{{item.title}}</p>
     <p>{{item.price}}</p>
-    <p>{{item.brand}}</p>
+    <p>{{item.info}}</p>
     <p>{{item.description}}</p>
+    <a (onclick)="getById(item.link)">See offer details</a>
 </div>

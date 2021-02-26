@@ -1,7 +1,7 @@
 export class NewCarModel {
     price: string;
-    brand: string;
-    fuel: string;
-    km: string;
+    title: string;
+    info: string;
     description: string;
+    link: string;
 }

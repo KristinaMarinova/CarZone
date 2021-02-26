@@ -1,7 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text.RegularExpressions;
 using WebCarsProject.Data;
 using WebCarsProject.Models;
 using WebCarsProject.Models.DTOs;
@@ -105,7 +104,6 @@ namespace WebCarsProject.Services
                 });
             return result;
         }
-
         public IEnumerable<CarDTO> GetUsersLikedCars()
         {
             var result = _context.Likes.Where(x => x.UserId == _userContext.UserId)
@@ -120,7 +118,6 @@ namespace WebCarsProject.Services
 
             return result;
         }
-
         public void IncrementViews(int id)
         {
             var car = _context.Cars.Find(id);
@@ -136,35 +133,81 @@ namespace WebCarsProject.Services
             car.Model = car.Model.Trim();
             car.CarPic = car.CarPic.Trim();
         }
-
         public IEnumerable<newCarDTO> GetNewCars()
         {
             HtmlAgilityPack.HtmlWeb web = new HtmlAgilityPack.HtmlWeb();
             HtmlAgilityPack.HtmlDocument doc = web.Load("https://www.cars.bg/");
-            var HeaderName = doc.DocumentNode.SelectNodes("//a[@class='d-grid no-decoration']").ToList();
+
+            var price = doc.DocumentNode.SelectNodes("//h6[@class='card__title mdc-typography mdc-typography--headline6 price']").ToArray();
+            var title = doc.DocumentNode.SelectNodes("//h5[@class='card__title mdc-typography mdc-typography--headline5 observable']").ToArray();
+            var info = doc.DocumentNode.SelectNodes("//div[@class='card__secondary mdc-typography mdc-typography--body1 black']").ToArray();
+            var description = doc.DocumentNode.SelectNodes("//div[@class='card__secondary mdc-typography mdc-typography--body2']").ToArray();
+
+            var href = doc.DocumentNode.SelectNodes("//a[@class='d-grid no-decoration']").ToArray();
+            var links = new List<string>();
+
+            foreach (var item in href)
+            {
+                var i = item.OuterHtml.Split("list-link=");
+                string f = i[0].Remove(0, 9);
+                f = f.Remove(f.Length - 2, 2);
+
+                links.Add(f);
+            }
 
             var carsList = new List<newCarDTO>();
 
-            foreach (var item in HeaderName)
+            for (int i = 0; i < price.Length; i++)
             {
-                var i = item.InnerText.Replace("\n", string.Empty);
-                //i = i.Replace("\n", string.Empty);
-                string[] splittedPost = Regex.Split(i, @"(?<price>[0-9]+,[0-9]+ лв.\s)(?<brand>[a-zA-Z]+-[a-zA-Z]+\s[a-zA-Z]+\s[0-9]+\s[0-9].[0-9]\s?\D+\d*\s?\d*\s\d*),\s?(?<fuel>\S+),\s?(?<description>\S+(?:...)+).?");
-
-                //^\s + (?< price >[0 - 9] +,[0 - 9] + лв.\s)\s + (?< brand >\S +\s +\S +\s +\S +)\s +\S +\s + (?< fuel >\S +),\s + (?< km >\S +\s +\S +)\s + (?< description > (\S +\s){ 1,})\s +
-
-
-carsList.Add(new newCarDTO
+                carsList.Add(new newCarDTO
                 {
-                    Price = splittedPost[0],
-                    Brand = splittedPost[1],
-                    Fuel = splittedPost[2],
-                    Km = splittedPost[3],
-                    Description = splittedPost[4]
+                    Price = price[i].InnerText.TrimStart().TrimEnd().ToString(),
+                    Title = title[i].InnerText.TrimStart().TrimEnd().ToString(),
+                    Info = info[i].InnerText.TrimStart().TrimEnd().ToString(),
+                    Description = description[i].InnerText.TrimStart().TrimEnd().ToString(),
+                    Link = links[i]
                 });
             }
 
             return carsList;
+        }
+
+        public newCarDTO GetNewCarById(string id)
+        {
+            HtmlAgilityPack.HtmlWeb web = new HtmlAgilityPack.HtmlWeb();
+            HtmlAgilityPack.HtmlDocument doc = web.Load("https://www.cars.bg/offer/" + id);
+
+            var title = doc.DocumentNode
+                .SelectNodes("//div[@style='float:left; font-size: 1.5em; padding-top: 3px;']")
+                .SingleOrDefault().InnerText;
+            
+            var textAfterTite = doc.DocumentNode.SelectNodes("//div[@class='text-copy']").ToArray();
+            var description = doc.DocumentNode.SelectNodes("//div[@class='description text-copy' ]").SingleOrDefault().InnerText;
+            var imgListUrl =  GetUrlPicList(id);
+            var price = doc.DocumentNode.SelectNodes("//div[@class='offer-price']").SingleOrDefault().InnerText;
+
+            return null;
+        }
+
+        public List<string> GetUrlPicList(string id)
+        {
+            HtmlAgilityPack.HtmlWeb web = new HtmlAgilityPack.HtmlWeb();
+
+            HtmlAgilityPack.HtmlDocument doc = web.Load("https://www.cars.bg/offer/" + id);
+
+            var images = doc.DocumentNode.SelectNodes("//img[@class='owl-lazy']").ToArray();
+            var imgListUrl = new List<string>();
+
+            foreach (var i in images)
+            {
+                var imgArr = i.OuterHtml.Split(" class");
+                string img = imgArr[0].Remove(0, 15);
+                img = img.Remove(img.Length - 1, 1);
+
+                imgListUrl.Add(img);
+            }
+
+            return imgListUrl;
         }
     }
 

@@ -18,5 +18,7 @@ namespace WebCarsProject.Services
         public int GetCountOfViews(int carId);
         IEnumerable<CarDTO> GetUsersLikedCars();
 
+        newCarDTO GetNewCarById(string id);
+
     }
 }

@@ -16,4 +16,8 @@ export class NewCarsComponent implements OnInit {
     this.carService.getNewCars().subscribe(data => this.cars = data);
   }
 
+  getById(link: string) {
+    this.carService.getNewCarById(link).subscribe();
+  }
+
 }

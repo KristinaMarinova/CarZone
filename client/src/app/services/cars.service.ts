@@ -17,6 +17,10 @@ export class CarsService {
     return this.http.get('api/Cars/new');
   }
 
+  getNewCarById(id: string): Observable<any> {
+    return this.http.get(`api/Cars/newById/${id}`);
+  }
+
   getAll(): Observable<any> {
     return this.http.get('api/Cars');
   }

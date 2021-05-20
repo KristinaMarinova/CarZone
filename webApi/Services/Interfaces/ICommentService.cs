@@ -8,7 +8,7 @@ namespace WebCarsProject.Services
     {
         IEnumerable<CommentDTO> GetAllComments(int carId);
         int GetCountOfComments(int carId);
-        void AddComment(int carId, Comment comment);
+        Comment AddComment(int carId, Comment comment);
         IEnumerable<CommentDTO> DeleteComment(int carId, int commentId);
         void UpdateComment(int carId, int commentId, Comment comment);
     }

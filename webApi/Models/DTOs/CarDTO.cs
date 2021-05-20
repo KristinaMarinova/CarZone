@@ -39,7 +39,6 @@ namespace WebCarsProject.Models.DTOs
                     Price = e.Price,
                     Transmission = e.Transmission,
                     Model = e.Model,
-                    ViewCount = e.ViewCount,
                     Color = e.Color,
                     Year = e.Year,
                     UserId = e.UserId,

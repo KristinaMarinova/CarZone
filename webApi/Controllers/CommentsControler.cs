@@ -1,5 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 using WebCarsProject.Data;
 using WebCarsProject.Models.DTOs;
@@ -11,7 +11,6 @@ namespace WebCarsProject.Controllers
     [ApiController]
     public class CommentsControler : ControllerBase
     {
-
         private readonly ICommentService commentService;
 
         public CommentsControler(ICommentService commentService)
@@ -26,9 +25,10 @@ namespace WebCarsProject.Controllers
         }
 
         [HttpPost]
-        public void PostComment(int carId, Comment comment)
+        public Comment PostComment(int carId, Comment comment)
         {
-            commentService.AddComment(carId, comment);
+            //throw new Exception("err from comment");
+            return commentService.AddComment(carId, comment);
         }
 
         [HttpDelete("{id:int}")]

@@ -1426,11 +1426,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\project\\CarZone\\webApi\\WebCarsProject.csproj",
+      "projectUniqueName": "D:\\CarsZoneProject\\CarZone\\webApi\\WebCarsProject.csproj",
       "projectName": "WebCarsProject",
-      "projectPath": "D:\\project\\CarZone\\webApi\\WebCarsProject.csproj",
+      "projectPath": "D:\\CarsZoneProject\\CarZone\\webApi\\WebCarsProject.csproj",
       "packagesPath": "C:\\Users\\kristina.marinova\\.nuget\\packages\\",
-      "outputPath": "D:\\project\\CarZone\\webApi\\obj\\",
+      "outputPath": "D:\\CarsZoneProject\\CarZone\\webApi\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -1444,6 +1444,7 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "http://192.168.0.38:20202/nuget": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {

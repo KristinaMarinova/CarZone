@@ -1,5 +1,5 @@
 {
-  "testProject": {
+  "WebCarsProject": {
     "commandName": "Project",
     "launchBrowser": true,
     "launchUrl": "api/Cars",

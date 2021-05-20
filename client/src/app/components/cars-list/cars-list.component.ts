@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FilterModel } from 'src/app/services/filter.service';
 import { CarsService } from 'src/app/services/cars.service'
 import { CarModel } from 'src/app/models/carModel';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-cars-list',
@@ -14,23 +15,18 @@ export class CarsListComponent implements OnInit {
   pageSize = 9;
   page = 1;
 
-
   constructor(
-    private carService: CarsService
+    private carService: CarsService,
+    private route: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
-    this.retrieveCars();
+    this.route.data
+      .subscribe((data: any) => this.cars = data.cars);
   }
 
   search(filter?: FilterModel): void {
     this.carService.search(filter)
       .subscribe((cars: any[]) => this.cars = cars);
   }
-
-  retrieveCars(): void {
-    this.carService.getAll()
-      .subscribe(data => this.cars = data);
-  }
-
 }

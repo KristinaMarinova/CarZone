@@ -1,45 +1,64 @@
 <div style="margin: 3em;">
-    <form>
-        <div style="display: flex; justify-content: space-between; margin: 2em;">
-            <div class="row">
-                <label class="col">Brand</label>
-                <app-async-select class="col"
-                                  restUrl="api/Brands/Select"
-                                  [(ngModel)]="filterObjectsModel.brand"
-                                  (ngModelChange)="filterModel.brandId = $event?.id"></app-async-select>
-            </div>
-
-            <div class="row">
-                <label class="col">Fuel</label>
-                <app-async-select class="col"
-                                  restUrl="api/Fuels/Select"
-                                  [(ngModel)]="filterObjectsModel.fuel"
-                                  (ngModelChange)="filterModel.fuelId = $event?.id"></app-async-select>
-            </div>
-            <div class="row">
-                <label class="col">Transmission</label>
-                <app-async-select class="col"
-                                  restUrl="api/Transmissions/Select"
-                                  [(ngModel)]="filterObjectsModel.transmission"
-                                  (ngModelChange)="filterModel.transmissionId = $event?.id">All</app-async-select>
-            </div>
-            <div class="row">
-                <label class="col">Color</label>
-                <app-async-select class="col"
-                                  restUrl="api/Colors/Select"
-                                  [(ngModel)]="filterObjectsModel.color"
-                                  (ngModelChange)="filterModel.colorId = $event?.id"></app-async-select>
-            </div>
-            <div class="row">
-                <label style="margin-right: 1em;">Model</label>
-                <input style="width: 11em;"
-                       [(ngModel)]="filterModel.model" />
+    <form (submit)="search()">
+        <div>
+            <div class="row"
+                 style="align-items: center;">
+                <div class="col-sm-12 col-md-12 col-lg-2 col-xl-2">
+                    <div class="row">
+                        <label class="col-4">Brand</label>
+                        <app-async-select class="col-8"
+                                          restUrl="api/Brands/Select"
+                                          [(ngModel)]="filterObjectsModel.brand"
+                                          (ngModelChange)="filterModel.brandId = $event?.id"></app-async-select>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-12 col-lg-2 col-xl-2">
+                    <div class="row">
+                        <label class="col-4">Fuel</label>
+                        <app-async-select class="col-8"
+                                          restUrl="api/Fuels/Select"
+                                          [(ngModel)]="filterObjectsModel.fuel"
+                                          (ngModelChange)="filterModel.fuelId = $event?.id"></app-async-select>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-12 col-lg-2 col-xl-2">
+                    <div class="row">
+                        <label class="col-4">Transmission</label>
+                        <app-async-select class="col-8"
+                                          restUrl="api/Transmissions/Select"
+                                          [(ngModel)]="filterObjectsModel.transmission"
+                                          (ngModelChange)="filterModel.transmissionId = $event?.id">All
+                        </app-async-select>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-12 col-lg-2 col-xl-2">
+                    <div class="row">
+                        <label class="col-4">Color</label>
+                        <app-async-select class="col-8"
+                                          restUrl="api/Colors/Select"
+                                          [(ngModel)]="filterObjectsModel.color"
+                                          (ngModelChange)="filterModel.colorId = $event?.id"></app-async-select>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-12 col-lg-2 col-xl-2">
+                    <div class="row">
+                        <label class="col-4">Model</label>
+                        <input class="col-8"
+                               [(ngModel)]="filterModel.model" />
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-12 col-lg-2 col-xl-2">
+                    <div class="row ml-4">
+                        <button type="button"
+                                class="btn btn-outline-dark"
+                                (click)="clear()">clear</button>
+                    </div>
+                </div>
             </div>
         </div>
-
         <button class="btn btn-outline-dark form-group col-sm-12 offset-md-3 col-md-6"
                 style="margin-top: 1em;"
-                (click)="search()">
+                type="submit">
             search
         </button>
     </form>

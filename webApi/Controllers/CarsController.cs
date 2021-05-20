@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using WebCarsProject.Data;
@@ -72,25 +71,10 @@ namespace WebCarsProject.Controllers
             return _carService.GetCountOfViews(carId);
         }
 
-
         [HttpGet("Liked")]
         public IEnumerable<CarDTO> GetUsersLikedCars()
         {
             return _carService.GetUsersLikedCars();
         }
-
-        [HttpGet("new")]
-        public IEnumerable<newCarDTO> GetCarsFromSite()
-        {
-            return _carService.GetNewCars();
-        }
-
-        [HttpGet("{id}/NewById")]
-        public newCarDTO GetNewCarById(string id)
-        {
-            return _carService.GetNewCarById(id);
-        }
-
-
     }
 }

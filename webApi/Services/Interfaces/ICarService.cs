@@ -7,18 +7,14 @@ namespace WebCarsProject.Services
 {
     public interface ICarService
     {
+        IEnumerable<CarDTO> CarsByQueryAsync(CarFilter filter);
         IEnumerable<CarDTO> GetAllCars();
-        IEnumerable<newCarDTO> GetNewCars();
         CarDTO GetCarById(int id);
-        void IncrementViews(int id);
         Car AddCar(Car car);
         void UpdateCarAsync(int id, Car car);
         void DeleteCarByIdAsync(int id);
-        IEnumerable<CarDTO> CarsByQueryAsync(CarFilter filter);
+        void IncrementViews(int id);
         public int GetCountOfViews(int carId);
         IEnumerable<CarDTO> GetUsersLikedCars();
-
-        newCarDTO GetNewCarById(string id);
-
     }
 }

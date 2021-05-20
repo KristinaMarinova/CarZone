@@ -16,12 +16,14 @@ export class LikedCarsBtnComponent implements OnInit {
   constructor(private carLikesService: CarLikesService) { }
 
   ngOnInit(): void {
-    this.carLikesService.getUserLikedCars().subscribe((data: any) => this.likedCars = data);
+    this.carLikesService.getUserLikedCars()
+      .subscribe((data: any) => this.likedCars = data);
   }
 
   unlikeCar(car: CarModel) {
     this.likedCars.filter(cars => cars !== car)
-    this.carLikesService.removeLike(car.id).subscribe((data: any) => car.likesCount = data);
+    this.carLikesService.removeLike(car.id)
+      .subscribe((data: any) => car.likesCount = data);
   }
 
   hide() {

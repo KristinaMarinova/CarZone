@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
 import { EMPTY, Observable } from 'rxjs';
-import { UsersService } from './users.service';
+import { UsersService } from '../users.service';
 
 @Injectable({
   providedIn: 'root'
@@ -18,14 +18,9 @@ export class UserResolver implements Resolve<any> {
     route: ActivatedRouteSnapshot,
     _: RouterStateSnapshot
   ): Observable<any> | Promise<any> | any {
-
-    // const userId = this.resource.getUserId();
-
-
     if (isNaN(this.userId)) {
       return EMPTY;
     }
-
     return this.resource.getById(this.userId);
   }
 }

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using WebCarsProject.Data;
 using WebCarsProject.Models.DTOs;
 
@@ -35,14 +36,14 @@ namespace WebCarsProject.Services
         {
             return _context.Comments.Where(x => x.CarId == carId).Count();
         }
-        public void AddComment(int carId, Comment comment)
+        public Comment AddComment(int carId, Comment comment)
         {
-           
+            Thread.Sleep(3000);
             comment.UserId = _user.UserId;
             comment.CarId = carId;
             _context.Comments.Add(comment);
-
             _context.SaveChanges();
+            return comment;
         }
 
         public IEnumerable<CommentDTO> DeleteComment(int carId, int commentId)

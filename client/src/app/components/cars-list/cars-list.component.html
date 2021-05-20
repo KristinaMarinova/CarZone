@@ -1,28 +1,31 @@
-<h1> Our cars </h1>
-<app-filter-cars (searchClicked)="search($event)"></app-filter-cars>
-<div class="row">
-    <div class="card-group col-sm-12 col-md-4"
-         *ngFor="let car of cars | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize">
-        <div class="card">
-            <div class="card-body">
-                <a class="card-title"
-                   [routerLink]="[car.id]">{{car.brand.name}} {{car.model}} {{car.price}} lv.</a>
-            </div>
-            <div style="height: 80%;">
-                <img id="imgContainer"
-                     [routerLink]="[car.id]"
-                     class="card-img-top"
-                     src="{{car.carPic}}"
-                     alt="Card image"
-                     onerror="this.src='https://image.freepik.com/free-photo/3d-rendering-white-question-mark-isolated-black-background_42071-126.jpg'">
+<div style="min-height: 800px;">
+    <h1> Our cars </h1>
+    <app-filter-cars (searchClicked)="search($event)"></app-filter-cars>
+    <div class="row">
+        <div class="card-group col-sm-12 col-md-4"
+             *ngFor="let car of cars | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize">
+            <div class="card">
+                <div class="card-body">
+                    <a class="card-title"
+                       [routerLink]="[car.id]">{{car.brand.name}} {{car.model}} {{car.price}} lv.</a>
+                </div>
+                <div style="height: 80%;">
+                    <img id="imgContainer"
+                         [routerLink]="[car.id]"
+                         class="card-img-top"
+                         src="{{car.carPic}}"
+                         alt="Card image"
+                         onerror="this.src='https://image.freepik.com/free-photo/3d-rendering-white-question-mark-isolated-black-background_42071-126.jpg'">
+                </div>
             </div>
         </div>
     </div>
-</div>
 
-<div style=" display: flex; justify-content: center">
-    <ngb-pagination [pageSize]="pageSize"
-                    [(page)]="page"
-                    [collectionSize]="cars.length"
-                    [boundaryLinks]="true"></ngb-pagination>
+    <div style=" display: flex; justify-content: center"
+         *ngIf="cars.length > 9">
+        <ngb-pagination [pageSize]="pageSize"
+                        [(page)]="page"
+                        [collectionSize]="cars.length"
+                        [boundaryLinks]="true"></ngb-pagination>
+    </div>
 </div>

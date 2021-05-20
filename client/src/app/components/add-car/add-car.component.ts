@@ -32,7 +32,8 @@ export class AddCarComponent implements OnInit {
       .subscribe((data) => {
         this.router.navigate(['cars', data.id]);
         this.carModel.id = data.id;
-        this.carDetaiService.addDetails(this.carModel.id, this.arr).subscribe();
+        this.carDetaiService.addDetails(this.carModel.id, this.arr)
+          .subscribe();
       });
 
 

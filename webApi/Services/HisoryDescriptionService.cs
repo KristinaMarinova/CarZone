@@ -9,39 +9,39 @@ namespace WebCarsProject.Services
 {
     public class HisoryDescriptionService : IHisoryDescriptionService
     {
-        private readonly AppDbContext _context;
-        private readonly UserContext _user;
+        private readonly AppDbContext context;
+        private readonly UserContext user;
         public HisoryDescriptionService(AppDbContext context, UserContext user)
         {
-            _context = context;
-            _user = user;
+            this.context = context;
+            this.user = user;
         }
 
         public IEnumerable<Description> GetAllHistoryDescriptions(int carId)
         {
-            var d = this._context.Descriptions.Where(x => x.CarId == carId).ToList();
+            var d = this.context.Descriptions.Where(x => x.CarId == carId).ToList();
             return d;
         }
 
         public Description GetById(int id)
         {
-            return _context.Descriptions.Where(x => x.Id == id).SingleOrDefault();
+            return context.Descriptions.Where(x => x.Id == id).SingleOrDefault();
         }
 
         public void AddHistoryDescription(int carId, List<Description> descriptionList)
         {
             foreach (var description in descriptionList)
             {
-                description.UserId = _user.UserId;
+                description.UserId = user.UserId;
                 description.CarId = carId;
-                _context.Descriptions.Add(description);
+                context.Descriptions.Add(description);
             }
-            _context.SaveChanges();
+            context.SaveChanges();
         }
 
         public async Task UpdateDescription(int carId, List<Description> description)
         {
-            var existingHistoryDetails = await _context.Descriptions
+            var existingHistoryDetails = await context.Descriptions
                 .Where(c => c.CarId == carId)
                 .ToListAsync();
 
@@ -53,15 +53,15 @@ namespace WebCarsProject.Services
                 foreach (var item in forAdd)
                 {
                     item.CarId = carId;
-                    item.UserId = _user.UserId;
+                    item.UserId = user.UserId;
                 }
-                _context.Descriptions.AddRange(forAdd);
+                context.Descriptions.AddRange(forAdd);
             }
 
             var forDelete = existingHistoryDetails.Where(e => !description.Any(d => d.Id == e.Id));
             if (forDelete.Any())
             {
-                _context.Descriptions.RemoveRange(forDelete);
+                context.Descriptions.RemoveRange(forDelete);
             }
 
             var forUpdate = existingHistoryDetails.Where(e => description.Any(d => d.Id == e.Id));
@@ -72,14 +72,14 @@ namespace WebCarsProject.Services
                 item.DescriptionDetail = updatedValue.DescriptionDetail;
             }
 
-            await _context.SaveChangesAsync();
+            await context.SaveChangesAsync();
         }
 
         public void DeleteHistoryDescription(int descriptionId)
         {
-            var descriptionToDelete = _context.Descriptions.Where(e => e.Id == descriptionId).SingleOrDefault();
-            _context.Descriptions.Remove(descriptionToDelete);
-            _context.SaveChanges();
+            var descriptionToDelete = context.Descriptions.Where(e => e.Id == descriptionId).SingleOrDefault();
+            context.Descriptions.Remove(descriptionToDelete);
+            context.SaveChanges();
         }
     }
 }

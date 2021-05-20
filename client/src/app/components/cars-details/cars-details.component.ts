@@ -3,7 +3,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { CarModel } from 'src/app/models/carModel';
 import { PartDescriptionModel } from 'src/app/models/partDescriptionModel';
 import { CarDetailService } from 'src/app/services/car-detail.service';
-import { CarsService } from 'src/app/services/cars.service';
 import { UsersService } from 'src/app/services/users.service';
 
 @Component({
@@ -28,7 +27,8 @@ export class CarsDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.data.subscribe((data: any) => this.currentCar = data.car);
-    this.carDetaiService.getDetails(this.currentCar.id).subscribe((data: any) => this.historyDetails = data);
+    this.carDetaiService.getDetails(this.currentCar.id)
+      .subscribe((data: any) => this.historyDetails = data);
     this.likesCount = this.currentCar.likesCount;
 
     this.canEditPost();

@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using WebCarsProject.Data;
@@ -9,9 +10,10 @@ using WebCarsProject.Data;
 namespace WebCarsProject.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210512114559_viewTableCreated")]
+    partial class viewTableCreated
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -32,33 +34,6 @@ namespace WebCarsProject.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Brands");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Name = "Bmw"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Name = "Audi"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Name = "Mercedes"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Name = "Honda"
-                        },
-                        new
-                        {
-                            Id = 5,
-                            Name = "Opel"
-                        });
                 });
 
             modelBuilder.Entity("WebCarsProject.Data.Car", b =>
@@ -143,33 +118,6 @@ namespace WebCarsProject.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Colors");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Name = "Black"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Name = "Grey"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Name = "White"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Name = "Red"
-                        },
-                        new
-                        {
-                            Id = 5,
-                            Name = "Blue"
-                        });
                 });
 
             modelBuilder.Entity("WebCarsProject.Data.Comment", b =>
@@ -241,28 +189,6 @@ namespace WebCarsProject.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Fuels");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Name = "Petrol"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Name = "Gas"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Name = "Diesel"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Name = "Hybrid"
-                        });
                 });
 
             modelBuilder.Entity("WebCarsProject.Data.Like", b =>
@@ -324,18 +250,6 @@ namespace WebCarsProject.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Transmissions");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Name = "Automatic"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Name = "Manual"
-                        });
                 });
 
             modelBuilder.Entity("WebCarsProject.Data.User", b =>
@@ -395,18 +309,6 @@ namespace WebCarsProject.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("UserTypes");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            TypeOfUser = "Admin"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            TypeOfUser = "User"
-                        });
                 });
 
             modelBuilder.Entity("WebCarsProject.Data.View", b =>

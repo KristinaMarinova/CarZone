@@ -18,4 +18,9 @@ export class FilterCarsComponent {
   search(): void {
     this.searchClicked.emit(this.filterModel);
   }
+
+  clear(): void {
+    this.filterModel = new FilterModel();
+    this.searchClicked.emit(this.filterModel);
+  }
 }

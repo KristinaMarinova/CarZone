@@ -17,8 +17,8 @@ export class CarLikesComponent {
     ) { }
 
     addLike(): void {
-        this.carLikesService.addLike(this.car.id).subscribe(
-            (data: any) => this.car.likesCount = data);
+        this.carLikesService.addLike(this.car.id)
+            .subscribe((data: any) => this.car.likesCount = data);
     }
 
     // getLikes(): void {

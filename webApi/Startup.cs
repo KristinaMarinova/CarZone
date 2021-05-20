@@ -10,15 +10,12 @@ using WebCarsProject.Data;
 using WebCarsProject.Services.Interfaces;
 using WebCarsProject.Services.jwtAuth.Interfaces;
 using WebCarsProject.Services.jwtAuth.Services;
-using WebCarsProject.Services.jwtAuth.Requirements;
 using WebCarsProject.Services.jwtAuth.Handlers;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using WebCarsProject.Services.jwtAuth.Helpers;
 using System;
-using Microsoft.Extensions.DependencyInjection.Extensions;
-using Microsoft.AspNetCore.Http;
 
 namespace WebCarsProject
 {

@@ -20,7 +20,8 @@ export class PartsHistoryTableComponent implements OnInit {
   }
 
   update() {
-    this.carDetaiService.updateDetail(this.currentCar.id, this.historyDetails).subscribe();
+    this.carDetaiService.updateDetail(this.currentCar.id, this.historyDetails)
+      .subscribe();
   }
 
   addRow() {

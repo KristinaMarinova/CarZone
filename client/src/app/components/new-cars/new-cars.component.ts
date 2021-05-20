@@ -13,11 +13,13 @@ export class NewCarsComponent implements OnInit {
   constructor(private carService: CarsService) { }
 
   ngOnInit(): void {
-    this.carService.getNewCars().subscribe(data => this.cars = data);
+    this.carService.getNewCars()
+      .subscribe(data => this.cars = data);
   }
 
   getById(link: string) {
-    this.carService.getNewCarById(link).subscribe();
+    this.carService.getNewCarById(link)
+      .subscribe();
   }
 
 }

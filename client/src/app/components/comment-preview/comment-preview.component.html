@@ -1,13 +1,15 @@
 <div id="comment">
     <div id="profileImg"><img style="max-width: 69%;"
              src={{comment.userProfilePicUrl}}
-             alt="IMG"></div>
+             alt="image"
+             onerror="this.src= '../../../assets/user-avatar-pngrepo-com.png'">
+    </div>
     <div>
         <div style="margin-bottom: 1em;">{{comment.userName}}</div>
 
         <div style="display: flex;">
             <div>{{comment.content}}</div>
-            <button type="submit"
+            <button type="button"
                     *ngIf="comment.userId==userId"
                     [ngClass]="{'btnDelete': comment.userId==userId}"
                     id="deleteBtn"

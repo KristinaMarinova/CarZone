@@ -1,20 +1,20 @@
-<div id="mainDiv">
-
+<div class="mainDiv">
     <comment-preview *ngFor="let comment of comments; let i = index"
                      [comment]="comment"
                      (deleteRequest)="deleteComment($event)"></comment-preview>
-
     <div style="margin-top: 60px; margin-bottom: 0px; height: 11em;">
         <div class="form-group">
-            <div id="addComentTitle">Add Comment</div>
+            <div class="addComentTitle">Add Comment</div>
             <input class="form-control"
                    [(ngModel)]="comentToAdd.content"
                    placeholder="Enter comment">
-            <div class="addButtonDiv">
-                <button id="addBtn"
+            <div class="addBtnDiv">
+                <button class="addBtn"
                         type="submit"
                         class="btn btn-primary"
-                        (click)="addComment()">Add</button>
+                        [disabled]="hideBtn"
+                        (click)="addComment()">Add
+                </button>
             </div>
         </div>
     </div>

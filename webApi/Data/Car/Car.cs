@@ -16,7 +16,6 @@ namespace WebCarsProject.Data
         public int ColorId { get; set; }
         public int Km { get; set; }
         public int Year { get; set; }
-        public int ViewCount { get; set; }
         public int LikesCount { get; set; }
         public int TransmissionId { get; set; }
         public double Price { get; set; }

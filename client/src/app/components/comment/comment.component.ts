@@ -1,4 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { EMPTY } from 'rxjs';
+import { finalize } from 'rxjs/operators';
 import { AddCommentModel } from 'src/app/models/addComentModel';
 import { CommentModel } from 'src/app/models/comentModel';
 import { CommentService } from 'src/app/services/comment.service';
@@ -15,7 +17,7 @@ export class CommentComponent implements OnInit {
   comments: CommentModel[];
   comentToAdd = new AddCommentModel();
   commentId: number;
-
+  hideBtn: boolean = false;
 
   ngOnInit(): void {
     this.retriveCommens();
@@ -26,18 +28,25 @@ export class CommentComponent implements OnInit {
   ) { }
 
   retriveCommens(): void {
-    this.commentService.getAll(this.currentCar.id).subscribe((data: any) => this.comments = data);
+    this.commentService.getAll(this.currentCar.id)
+      .subscribe((data: any) => this.comments = data);
   }
 
   addComment() {
-    this.commentService.addComment(this.currentCar.id, this.comentToAdd).subscribe();
-    this.retriveCommens();
-    this.comentToAdd.content = '';
+    this.hideBtn = true;
+
+    this.commentService.addComment(this.currentCar.id, this.comentToAdd)
+      .subscribe(data => {
+        this.comments.push(data);
+        this.hideBtn = false;
+        this.comentToAdd.content = '';
+      });
   }
 
   deleteComment(commentId: number) {
-    this.commentService.deleteComment(this.currentCar.id, commentId).subscribe();
+    this.commentService.deleteComment(this.currentCar.id, commentId)
+      .subscribe();
+
     this.comments = this.comments.filter(item => item.id !== commentId);
   }
-
 }

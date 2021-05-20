@@ -26,63 +26,88 @@
                 </button>
             </div>
             <div class="modal-body">
-                <div class="row">
-                    <label>Img:</label>
-                    <input type="text"
-                           [(ngModel)]="currentCar.carPic">
+                <div class="row mb-2">
+                    <div class="col"><label>Img:</label></div>
+                    <div class="col">
+                        <input type="text"
+                               style="width: 218px;"
+                               [(ngModel)]="currentCar.carPic">
+                    </div>
                 </div>
-                <div class="row">
-                    <label>Brand:</label>
-                    <app-async-select restUrl="api/Brands/Select"
-                                      [(ngModel)]="currentCar.brand"
-                                      (ngModelChange)="currentCar.brandId = $event?.id">
-                    </app-async-select>
+                <div class="row mb-2">
+                    <div class="col"><label>Brand:</label></div>
+                    <div class="col">
+                        <app-async-select restUrl="api/Brands/Select"
+                                          [(ngModel)]="currentCar.brand"
+                                          (ngModelChange)="currentCar.brandId = $event?.id">
+                        </app-async-select>
+                    </div>
                 </div>
-                <div class="row">
-                    <label>Model:</label>
-                    <input type="text"
-                           [(ngModel)]="currentCar.model">
+                <div class="row mb-2">
+                    <div class="col"><label>Model:</label></div>
+                    <div class="col">
+                        <input type="text"
+                               style="width: 218px;"
+                               [(ngModel)]="currentCar.model">
+                    </div>
                 </div>
-                <div class="row">
-                    <label>Year:</label>
-                    <input type="number"
-                           [(ngModel)]="currentCar.year">
+
+                <div class="row mb-2">
+                    <div class="col"><label>Year:</label></div>
+                    <div class="col">
+                        <input type="number"
+                               style="width: 218px;"
+                               [(ngModel)]="currentCar.year">
+                    </div>
                 </div>
-                <div class="row">
-                    <label>Price:</label>
-                    <input type="number"
-                           [(ngModel)]="currentCar.price">
+                <div class="row mb-2">
+                    <div class="col"><label>Price:</label></div>
+                    <div class="col"><input type="number"
+                               style="width: 218px;"
+                               [(ngModel)]="currentCar.price"></div>
                 </div>
-                <div class="row">
-                    <label>Fuel:</label>
-                    <app-async-select restUrl="api/Fuels/Select"
-                                      [(ngModel)]="currentCar.fuel"
-                                      (ngModelChange)="currentCar.fuelId = $event?.id">
-                    </app-async-select>
+                <div class="row mb-2">
+                    <div class="col"><label>Fuel:</label></div>
+                    <div class="col">
+                        <app-async-select restUrl="api/Fuels/Select"
+                                          [(ngModel)]="currentCar.fuel"
+                                          (ngModelChange)="currentCar.fuelId = $event?.id">
+                        </app-async-select>
+                    </div>
                 </div>
-                <div class="row">
-                    <label>Transmission:</label>
-                    <app-async-select restUrl="api/Transmissions/Select"
-                                      [(ngModel)]="currentCar.transmission"
-                                      (ngModelChange)="currentCar.transmissionId = $event?.id">
-                    </app-async-select>
+                <div class="row mb-2">
+                    <div class="col"><label>Transmission:</label></div>
+                    <div class="col">
+                        <app-async-select restUrl="api/Transmissions/Select"
+                                          [(ngModel)]="currentCar.transmission"
+                                          (ngModelChange)="currentCar.transmissionId = $event?.id">
+                        </app-async-select>
+                    </div>
                 </div>
-                <div class="row">
-                    <label>Horsepower:</label>
-                    <input type="number"
-                           [(ngModel)]="currentCar.horsepower">
+                <div class="row mb-2">
+                    <div class="col"><label>Horsepower:</label></div>
+                    <div class="col">
+                        <input type="number"
+                               style="width: 218px;"
+                               [(ngModel)]="currentCar.horsepower">
+                    </div>
                 </div>
-                <div class="row">
-                    <label>Km:</label>
-                    <input type="number"
-                           [(ngModel)]="currentCar.km">
+                <div class="row mb-2">
+                    <div class="col"><label>Km:</label></div>
+                    <div class="col">
+                        <input type="number"
+                               style="width: 218px;"
+                               [(ngModel)]="currentCar.km">
+                    </div>
                 </div>
-                <div class="row">
-                    <label>Color:</label>
-                    <app-async-select restUrl="api/Colors/Select"
-                                      [(ngModel)]="currentCar.color"
-                                      (ngModelChange)="currentCar.colorId = $event?.id">
-                    </app-async-select>
+                <div class="row mb-2">
+                    <div class="col"><label>Color:</label></div>
+                    <div class="col">
+                        <app-async-select restUrl="api/Colors/Select"
+                                          [(ngModel)]="currentCar.color"
+                                          (ngModelChange)="currentCar.colorId = $event?.id">
+                        </app-async-select>
+                    </div>
                 </div>
             </div>
             <div class="modal-footer">

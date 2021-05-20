@@ -14,6 +14,7 @@ export class CarFeaturesComponent implements OnInit {
 
   constructor(private userService: UsersService) { }
   ngOnInit(): void {
-    this.userService.getById(this.car.userId).subscribe(data => this.sellerInfo = data);
+    this.userService.getById(this.car.userId)
+      .subscribe(data => this.sellerInfo = data);
   }
 }

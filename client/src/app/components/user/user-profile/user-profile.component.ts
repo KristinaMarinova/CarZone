@@ -14,20 +14,14 @@ export class UserProfileComponent implements OnInit {
   hideDiv: boolean = false;
   userId = +localStorage.getItem('userId');
 
-
-
   constructor(
     private route: ActivatedRoute,
     private userService: UsersService
   ) { }
 
   ngOnInit(): void {
-    this.getUserInfo();
-  }
-
-  getUserInfo(): void {
-    this.userService.getById(this.userId)
-      .subscribe((data: any) => this.user = data);
+    this.route.data
+      .subscribe((data: any) => this.user = data.user);
   }
 
   editInfo(): void {

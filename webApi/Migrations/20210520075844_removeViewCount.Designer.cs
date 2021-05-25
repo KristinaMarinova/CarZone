@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using WebCarsProject.Data;
@@ -9,9 +10,10 @@ using WebCarsProject.Data;
 namespace WebCarsProject.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210520075844_removeViewCount")]
+    partial class removeViewCount
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -58,36 +60,6 @@ namespace WebCarsProject.Migrations
                         {
                             Id = 5,
                             Name = "Opel"
-                        },
-                        new
-                        {
-                            Id = 6,
-                            Name = "Peugeot"
-                        },
-                        new
-                        {
-                            Id = 7,
-                            Name = "Skoda"
-                        },
-                        new
-                        {
-                            Id = 8,
-                            Name = "Ford"
-                        },
-                        new
-                        {
-                            Id = 9,
-                            Name = "Mitsubishi"
-                        },
-                        new
-                        {
-                            Id = 10,
-                            Name = "Saab"
-                        },
-                        new
-                        {
-                            Id = 11,
-                            Name = "Toyota"
                         });
                 });
 
@@ -196,31 +168,6 @@ namespace WebCarsProject.Migrations
                         {
                             Id = 5,
                             Name = "Blue"
-                        },
-                        new
-                        {
-                            Id = 6,
-                            Name = "Green"
-                        },
-                        new
-                        {
-                            Id = 7,
-                            Name = "Yellow"
-                        },
-                        new
-                        {
-                            Id = 8,
-                            Name = "Pink"
-                        },
-                        new
-                        {
-                            Id = 9,
-                            Name = "Purple"
-                        },
-                        new
-                        {
-                            Id = 10,
-                            Name = "Brown"
                         });
                 });
 

@@ -22,7 +22,7 @@ export class CarLikesService {
   }
 
   removeLike(carId: number): Observable<any> {
-    return this.http.delete(`api/Cars/${carId}/unlike`);
+    return this.http.delete(`api/Cars/${carId}/Unlike`);
   }
 
 }

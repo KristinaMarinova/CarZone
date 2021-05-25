@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
-using System;
+using Microsoft.Extensions.Logging;
 using System.Threading.Tasks;
 using WebCarsProject.Data;
 
@@ -7,28 +7,34 @@ namespace WebCarsProject.Middlewares
 {
     public class RequestSaverMiddleware
     {
-        private readonly RequestDelegate _next;
+        private readonly RequestDelegate next;
+        private readonly ILogger logger;
 
-        public RequestSaverMiddleware(RequestDelegate next)
+        public RequestSaverMiddleware(RequestDelegate next, ILoggerFactory loggerFactory)
         {
-            _next = next;
+            this.next = next;
+            logger = loggerFactory.CreateLogger<RequestSaverMiddleware>();
         }
 
         public async Task InvokeAsync(HttpContext context, AppDbContext dbContext)
         {
-            var request = context.Request;
-            var requestInfo = new RequestSaver
+            try
             {
-                Verb = request.Method,
-                Path = request.Path,
-                Time = DateTime.UtcNow,
-                Protocol = request.Protocol
-            };
+                await this.next(context);
+            }
+            finally
+            {
+                var ip = context.Connection.RemoteIpAddress.ToString();
+                var method = context.Request.Method;
+                var path = context.Request?.Path;
+                var protocol = context.Request.Protocol;
+                var host = context?.Request.Host;
+                var statusCode = context.Response?.StatusCode;
 
-            dbContext.RequestSavers.Add(requestInfo);
-            dbContext.SaveChanges();
-
-            await _next(context);
+                this.logger.LogInformation(
+                    "Request {method}, {url}, {ip}, {protocol}, {host} => {statusCode}",
+                    method, path, ip, protocol, host, statusCode);
+            }
         }
     }
 }

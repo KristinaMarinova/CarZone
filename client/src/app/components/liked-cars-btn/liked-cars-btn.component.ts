@@ -21,9 +21,12 @@ export class LikedCarsBtnComponent implements OnInit {
   }
 
   unlikeCar(car: CarModel) {
-    this.likedCars.filter(cars => cars !== car)
+    this.likedCars.filter(cars => cars !== car);
+
     this.carLikesService.removeLike(car.id)
-      .subscribe((data: any) => car.likesCount = data);
+      .subscribe((data) => {
+        car.likesCount == data;
+      });
   }
 
   hide() {

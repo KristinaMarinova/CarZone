@@ -1,0 +1,18 @@
+{
+    "login": {
+        "login": "Login",
+        "signUp": "Sign Up",
+        "username": "Username",
+        "password": "Password",
+        "phone": "Phone",
+        "firstName": "First name",
+        "lastName": "Last name",
+        "userInformation": "User Information",
+        "forgotYourPassword": "Forgot Your password",
+        "or": "or",
+        "errors": {
+            "Missing_login_details": "Missing login details",
+            "invalid_credentials": "Invalid creadentials"
+        }
+    }
+}

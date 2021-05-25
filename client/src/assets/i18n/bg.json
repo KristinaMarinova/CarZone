@@ -1,0 +1,18 @@
+{
+    "login": {
+        "login": "Вход",
+        "signUp": "Регистрация",
+        "username": "Потребителско име",
+        "password": "Парола",
+        "phone": "Телефон",
+        "firstName": "Име",
+        "lastName": "Фамилия",
+        "userInformation": "Потребителска информация",
+        "forgotYourPassword": "Забравена парола",
+        "or": "или",
+        "errors": {
+            "missing_login_details": "Моля попълнете всички полета",
+            "invalid_credentials": "Не съществува потребител с такова потребителско име и/или парола"
+        }
+    }
+}

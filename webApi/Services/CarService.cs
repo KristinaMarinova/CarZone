@@ -1,6 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Net.Http;
 using WebCarsProject.Data;
 using WebCarsProject.Models;
 using WebCarsProject.Models.DTOs;
@@ -54,7 +57,6 @@ namespace WebCarsProject.Services
         public Car AddCar(Car car)
         {
             car.UserId = userContext.UserId;
-            TrimWhiteSpaces(car);
             context.Entry(car).State = EntityState.Added;
             context.SaveChanges();
             return car;
@@ -109,11 +111,6 @@ namespace WebCarsProject.Services
                 }).ToList();
 
             return result;
-        }
-        private void TrimWhiteSpaces(Car car)
-        {
-            car.Model = car.Model.Trim();
-            car.CarPic = car.CarPic.Trim();
         }
 
         //public IEnumerable<newCarDTO> GetNewCars()

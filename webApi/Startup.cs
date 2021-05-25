@@ -32,6 +32,7 @@ namespace WebCarsProject
         {
             services.AddDbContext<AppDbContext>(opt =>
                opt.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));
+           
             services.AddScoped<ICarService, CarService>();
             services.AddScoped(typeof(INomenclatureService<>), typeof(NomenclatureService<>));
             services.AddScoped(typeof(ICommentService), typeof(CommentService));
@@ -72,15 +73,17 @@ namespace WebCarsProject
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.UseMiddleware<ExceptionMiddleware>(); 
+            app.UseRequestSaver();
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseRouting();
             app.UseAuthentication();
+            app.UseRouting();
             app.UseAuthorization();
-            app.UseRequestSaver();
 
             app.UseEndpoints(endpoints =>
             {

@@ -21,6 +21,7 @@ export class FilterCarsComponent {
 
   clear(): void {
     this.filterModel = new FilterModel();
+    this.filterObjectsModel = new FilterObjectsModel();
     this.searchClicked.emit(this.filterModel);
   }
 }

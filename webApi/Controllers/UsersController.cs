@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -109,14 +110,14 @@ namespace WebCarsProject.Controllers
         {
             if (loginRequest == null || string.IsNullOrEmpty(loginRequest.Username) || string.IsNullOrEmpty(loginRequest.Password))
             {
-                return BadRequest("Missing login details");
+                throw new ArgumentException("Missing_login_details");
             }
 
             var loginResponse = await _usersService.Login(loginRequest);
 
             if (loginResponse == null)
             {
-                return BadRequest($"Invalid credentials");
+                throw new ArgumentException("Invalid_credentials");
             }
 
             return Ok(loginResponse);

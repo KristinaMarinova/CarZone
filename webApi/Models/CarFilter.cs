@@ -1,6 +1,6 @@
-﻿using WebCarsProject.Data;
+﻿using CarZone.Data;
 
-namespace WebCarsProject.Models
+namespace CarZone.Models
 {
     public class CarFilter : BaseFilter
     {

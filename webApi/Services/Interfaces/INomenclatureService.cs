@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using WebCarsProject.Data;
+using CarZone.Data;
 
-namespace WebCarsProject.Services
+namespace CarZone.Services
 {
     public interface INomenclatureService<TNomenclature>
         where TNomenclature : Nomenclature

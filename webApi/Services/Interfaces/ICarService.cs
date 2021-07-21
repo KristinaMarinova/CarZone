@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
-using WebCarsProject.Data;
-using WebCarsProject.Models;
-using WebCarsProject.Models.DTOs;
+using CarZone.Data;
+using CarZone.Models;
+using CarZone.Models.DTOs;
 
-namespace WebCarsProject.Services
+namespace CarZone.Services
 {
     public interface ICarService
     {
@@ -13,8 +13,8 @@ namespace WebCarsProject.Services
         Car AddCar(Car car);
         void UpdateCarAsync(int id, Car car);
         void DeleteCarByIdAsync(int id);
-        void IncrementViews(int id);
-        public int GetCountOfViews(int carId);
+        //void IncrementViews(int id);
+        //public int GetCountOfViews(int carId);
         IEnumerable<CarDTO> GetUsersLikedCars();
     }
 }

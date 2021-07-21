@@ -19,7 +19,7 @@ import { FooterComponent } from './components/shared/footer/footer.component';
 import { NotFoundComponent } from './components/shared/not-found/not-found.component';
 import { UserProfileComponent } from './components/user/user-profile/user-profile.component';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { TokenInterceptor } from './services/token-interceptor.service';
+import { TokenInterceptor } from '../infrastructure/interceptors/token-interceptor.service';
 import { FilterCarsComponent } from './components/filter-cars/filter-cars.component';
 import { CarLikesComponent } from './components/car-likes/car-likes.component';
 import { CommentComponent } from './components/comment/comment.component';

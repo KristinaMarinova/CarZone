@@ -4,11 +4,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
-using WebCarsProject.Data;
-using WebCarsProject.Models;
-using WebCarsProject.Models.DTOs;
+using CarZone.Data;
+using CarZone.Models;
+using CarZone.Models.DTOs;
 
-namespace WebCarsProject.Services
+namespace CarZone.Services
 {
     public class CarService : ICarService
     {
@@ -40,17 +40,6 @@ namespace WebCarsProject.Services
              .Where(e => e.Id == id)
              .Select(CarDTO.SelectExpression)
              .SingleOrDefault();
-
-            var isViewExist = context.Views.Where(x => x.UserId == userContext.UserId && x.CarId == id).ToList().Count > 0;
-            if (!isViewExist)
-            {
-                context.Views.Add(new View {
-                    CarId = id,
-                    UserId = userContext.UserId
-                });
-                carDto.ViewCount++;
-                context.SaveChanges();
-            }
 
             return carDto;
         }
@@ -88,17 +77,7 @@ namespace WebCarsProject.Services
             context.Cars.Remove(carToDelete);
             context.SaveChanges();
         }
-        public void IncrementViews(int id) //todo
-        {
-            var car = context.Cars.Find(id);
-            //car.ViewCount++;
-            context.SaveChanges();
-        }
-        public int GetCountOfViews(int carId) //todo
-        {
-            //return context.Cars.Where(x => x.Id == carId).SingleOrDefault().ViewCount;
-            return 1;
-        }
+
         public IEnumerable<CarDTO> GetUsersLikedCars()
         {
             var result = context.Likes.Where(x => x.UserId == userContext.UserId)
@@ -112,81 +91,6 @@ namespace WebCarsProject.Services
 
             return result;
         }
-
-        //public IEnumerable<newCarDTO> GetNewCars()
-        //{
-        //    HtmlAgilityPack.HtmlWeb web = new HtmlAgilityPack.HtmlWeb();
-        //    HtmlAgilityPack.HtmlDocument doc = web.Load("https://www.cars.bg/");
-
-        //    var price = doc.DocumentNode.SelectNodes("//h6[@class='card__title mdc-typography mdc-typography--headline6 price']").ToArray();
-        //    var title = doc.DocumentNode.SelectNodes("//h5[@class='card__title mdc-typography mdc-typography--headline5 observable']").ToArray();
-        //    var info = doc.DocumentNode.SelectNodes("//div[@class='card__secondary mdc-typography mdc-typography--body1 black']").ToArray();
-        //    var description = doc.DocumentNode.SelectNodes("//div[@class='card__secondary mdc-typography mdc-typography--body2']").ToArray();
-
-        //    var href = doc.DocumentNode.SelectNodes("//a[@class='d-grid no-decoration']").ToArray();
-        //    var links = new List<string>();
-
-        //    foreach (var item in href)
-        //    {
-        //        var i = item.OuterHtml.Split("list-link=");
-        //        string f = i[0].Remove(0, 9);
-        //        f = f.Remove(f.Length - 2, 2);
-
-        //        links.Add(f);
-        //    }
-
-        //    var carsList = new List<newCarDTO>();
-
-        //    for (int i = 0; i < price.Length; i++)
-        //    {
-        //        carsList.Add(new newCarDTO
-        //        {
-        //            Price = price[i].InnerText.TrimStart().TrimEnd().ToString(),
-        //            Title = title[i].InnerText.TrimStart().TrimEnd().ToString(),
-        //            Info = info[i].InnerText.TrimStart().TrimEnd().ToString(),
-        //            Description = description[i].InnerText.TrimStart().TrimEnd().ToString(),
-        //            Link = links[i]
-        //        });
-        //    }
-
-        //    return carsList;
-        //}
-        //public newCarDTO GetNewCarById(string id)
-        //{
-        //    HtmlAgilityPack.HtmlWeb web = new HtmlAgilityPack.HtmlWeb();
-        //    HtmlAgilityPack.HtmlDocument doc = web.Load("https://www.cars.bg/offer/" + id);
-
-        //    var title = doc.DocumentNode
-        //        .SelectNodes("//div[@style='float:left; font-size: 1.5em; padding-top: 3px;']")
-        //        .SingleOrDefault().InnerText;
-
-        //    var textAfterTite = doc.DocumentNode.SelectNodes("//div[@class='text-copy']").ToArray();
-        //    var description = doc.DocumentNode.SelectNodes("//div[@class='description text-copy' ]").SingleOrDefault().InnerText;
-        //    var imgListUrl =  GetUrlPicList(id);
-        //    var price = doc.DocumentNode.SelectNodes("//div[@class='offer-price']").SingleOrDefault().InnerText;
-
-        //    return null;
-        //}
-        //public List<string> GetUrlPicList(string id)
-        //{
-        //    HtmlAgilityPack.HtmlWeb web = new HtmlAgilityPack.HtmlWeb();
-
-        //    HtmlAgilityPack.HtmlDocument doc = web.Load("https://www.cars.bg/offer/" + id);
-
-        //    var images = doc.DocumentNode.SelectNodes("//img[@class='owl-lazy']").ToArray();
-        //    var imgListUrl = new List<string>();
-
-        //    foreach (var i in images)
-        //    {
-        //        var imgArr = i.OuterHtml.Split(" class");
-        //        string img = imgArr[0].Remove(0, 15);
-        //        img = img.Remove(img.Length - 1, 1);
-
-        //        imgListUrl.Add(img);
-        //    }
-
-        //    return imgListUrl;
-        //}
     }
 
     public static class CarQueryExtensions

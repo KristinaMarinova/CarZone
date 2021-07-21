@@ -2,7 +2,7 @@
 using System.Security.Cryptography;
 using System.Text;
 
-namespace WebCarsProject.Services
+namespace CarZone.Services
 {
     public class PasswordEncrypt
     {

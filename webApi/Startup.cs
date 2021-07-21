@@ -4,20 +4,20 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
-using WebCarsProject.Middlewares;
-using WebCarsProject.Services;
-using WebCarsProject.Data;
-using WebCarsProject.Services.Interfaces;
-using WebCarsProject.Services.jwtAuth.Interfaces;
-using WebCarsProject.Services.jwtAuth.Services;
-using WebCarsProject.Services.jwtAuth.Handlers;
+using CarZone.Middlewares;
+using CarZone.Services;
+using CarZone.Data;
+using CarZone.Services.Interfaces;
+using CarZone.Services.jwtAuth.Interfaces;
+using CarZone.Services.jwtAuth.Services;
+using CarZone.Services.jwtAuth.Handlers;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
-using WebCarsProject.Services.jwtAuth.Helpers;
+using CarZone.Services.jwtAuth.Helpers;
 using System;
 
-namespace WebCarsProject
+namespace CarZone
 {
     public class Startup
     {
@@ -31,7 +31,7 @@ namespace WebCarsProject
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<AppDbContext>(opt =>
-               opt.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));
+               opt.UseSqlServer(Configuration.GetConnectionString("CarZoneContext")));
            
             services.AddScoped<ICarService, CarService>();
             services.AddScoped(typeof(INomenclatureService<>), typeof(NomenclatureService<>));

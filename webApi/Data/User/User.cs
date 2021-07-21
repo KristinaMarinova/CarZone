@@ -1,8 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System;
+﻿using System;
 using System.Collections.Generic;
-namespace WebCarsProject.Data
+namespace CarZone.Data
 {
     public class User
     {
@@ -24,12 +22,6 @@ namespace WebCarsProject.Data
         public DateTime LastLogin { get; set; }
         public UserType UserType { get; set; }
         public virtual ICollection<Car> Cars { get; set; }
-    }
-    public class UserConfiguration : IEntityTypeConfiguration<User>
-    {
-        public void Configure(EntityTypeBuilder<User> builder)
-        {
-            builder.HasKey(x => x.Id);
-        }
+        public virtual ICollection<Comment> Comments { get; set; }
     }
 }

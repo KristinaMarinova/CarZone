@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using WebCarsProject.Data;
+using CarZone.Data;
 
-namespace WebCarsProject.Models.DTOs
+namespace CarZone.Models.DTOs
 {
     public class CarDTO
     {

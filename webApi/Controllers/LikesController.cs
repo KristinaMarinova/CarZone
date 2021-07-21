@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using WebCarsProject.Services.Interfaces;
+using CarZone.Services.Interfaces;
 
-namespace WebCarsProject.Controllers
+namespace CarZone.Controllers
 {
     [Route("api/Cars/{carId:int}")]
     [ApiController]

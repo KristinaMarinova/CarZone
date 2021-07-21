@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using WebCarsProject.Data;
-using WebCarsProject.Services.Interfaces;
+using CarZone.Data;
+using CarZone.Services.Interfaces;
 
-namespace WebCarsProject.Services
+namespace CarZone.Services
 {
     public class HisoryDescriptionService : IHisoryDescriptionService
     {

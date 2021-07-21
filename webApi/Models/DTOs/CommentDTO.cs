@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace WebCarsProject.Models.DTOs
+namespace CarZone.Models.DTOs
 {
     public class CommentDTO
     {

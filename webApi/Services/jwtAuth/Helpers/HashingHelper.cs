@@ -5,7 +5,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WebCarsProject.Services.jwtAuth.Helpers
+namespace CarZone.Services.jwtAuth.Helpers
 {
     public class HashingHelper
     {

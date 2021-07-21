@@ -1,5 +1,18 @@
 {
-  "WebCarsProject": {
+  "iisSettings": {
+    "windowsAuthentication": false,
+    "anonymousAuthentication": true,
+    "iis": {
+      "applicationUrl": "http://localhost/CarZone",
+      "sslPort": 0
+    },
+    "iisExpress": {
+      "applicationUrl": "http://localhost:63079",
+      "sslPort": 44385
+    }
+  },
+  "$schema": "http://json.schemastore.org/launchsettings.json",
+  "CarZone": {
     "commandName": "Project",
     "launchBrowser": true,
     "launchUrl": "api/Cars",
@@ -8,23 +21,13 @@
       "ASPNETCORE_ENVIRONMENT": "Development"
     }
   },
-  "iisSettings": {
-    "windowsAuthentication": false,
-    "anonymousAuthentication": true,
-    "iisExpress": {
-      "applicationUrl": "http://localhost:63079",
-      "sslPort": 44385
-    }
-  },
-  "$schema": "http://json.schemastore.org/launchsettings.json",
   "profiles": {
     "IIS Express": {
       "commandName": "Project",
-      "launchBrowser": true,
       "launchUrl": "api/Cars",
-      "ASPNETCORE_ENVIRONMENT": "Development",
       "windowsAuthentication": false,
-      "anonymousAuthentication": true
+      "anonymousAuthentication": true,
+      "ASPNETCORE_ENVIRONMENT": "Development"
     }
   }
 }

@@ -1,18 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
-
-namespace WebCarsProject.Data
+﻿namespace CarZone.Data
 {
-    public class Description : BaseContentOfCar
+    public class Description : BaseCar
     {
         public string Detail { get; set; }
         public string DescriptionDetail { get; set; }
-    }
-    public class DescriptionConfiguration : IEntityTypeConfiguration<Description>
-    {
-        public void Configure(EntityTypeBuilder<Description> builder)
-        {
-            builder.HasKey(x => x.Id);
-        }
     }
 }

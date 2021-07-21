@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using WebCarsProject.Data;
+using CarZone.Data;
 
-namespace WebCarsProject.Services.Interfaces
+namespace CarZone.Services.Interfaces
 {
     public interface IHisoryDescriptionService
     {

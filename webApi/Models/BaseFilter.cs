@@ -1,4 +1,4 @@
-﻿namespace WebCarsProject.Models
+﻿namespace CarZone.Models
 {
     public abstract class BaseFilter
     {

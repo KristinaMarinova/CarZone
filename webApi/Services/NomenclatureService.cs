@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using WebCarsProject.Data;
+using CarZone.Data;
 
-namespace WebCarsProject.Services
+namespace CarZone.Services
 {
     public class NomenclatureService<TNomenclature> : INomenclatureService<TNomenclature>
         where TNomenclature : Nomenclature

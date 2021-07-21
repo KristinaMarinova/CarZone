@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
-using WebCarsProject.Data;
-using WebCarsProject.Models.DTOs;
+using CarZone.Data;
+using CarZone.Models.DTOs;
 
-namespace WebCarsProject.Services
+namespace CarZone.Services
 {
     public class CommentService : ICommentService
     {

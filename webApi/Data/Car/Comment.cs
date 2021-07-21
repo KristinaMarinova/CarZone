@@ -1,18 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System;
-namespace WebCarsProject.Data
+﻿using System;
+namespace CarZone.Data
 {
-    public class Comment : BaseContentOfCar
+    public class Comment : BaseCar
     {
         public string Content { get; set; }
         public DateTime CreatedTime { get; set; } = DateTime.UtcNow;
-    }
-    public class CommentConfiguration : IEntityTypeConfiguration<Comment>
-    {
-        public void Configure(EntityTypeBuilder<Comment> builder)
-        {
-            builder.HasKey(x => x.Id);
-        }
     }
 }

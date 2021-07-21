@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
-using WebCarsProject.Data;
-using WebCarsProject.Models.DTOs;
+using CarZone.Data;
+using CarZone.Models.DTOs;
 
-namespace WebCarsProject.Services
+namespace CarZone.Services
 {
     public interface ICommentService
     {

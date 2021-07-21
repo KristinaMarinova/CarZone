@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Builder;
 
-namespace WebCarsProject.Middlewares
+namespace CarZone.Middlewares
 {
     public static class RequestMiddlewareExtensions
     {

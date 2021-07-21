@@ -1,11 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
-using WebCarsProject.Data;
-using WebCarsProject.Models.DTOs;
-using WebCarsProject.Services;
+using CarZone.Data;
+using CarZone.Models.DTOs;
+using CarZone.Services;
 
-namespace WebCarsProject.Controllers
+namespace CarZone.Controllers
 {
     [Route("api/Cars/{carId:int}/comments")]
     [ApiController]

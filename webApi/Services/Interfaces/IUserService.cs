@@ -1,9 +1,9 @@
 ﻿using System.Threading.Tasks;
-using WebCarsProject.Data;
-using WebCarsProject.Services.jwtAuth.Requests;
-using WebCarsProject.Services.jwtAuth.Responses;
+using CarZone.Data;
+using CarZone.Services.jwtAuth.Requests;
+using CarZone.Services.jwtAuth.Responses;
 
-namespace WebCarsProject.Services.jwtAuth.Interfaces
+namespace CarZone.Services.jwtAuth.Interfaces
 {
     public interface IUserService
     {

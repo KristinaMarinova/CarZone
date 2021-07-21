@@ -3,9 +3,9 @@ using System;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Security.Cryptography;
-using WebCarsProject.Data;
+using CarZone.Data;
 
-namespace WebCarsProject.Services.jwtAuth.Helpers
+namespace CarZone.Services.jwtAuth.Helpers
 {
     public class TokenHelper
     {

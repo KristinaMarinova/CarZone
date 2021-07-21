@@ -1,4 +1,4 @@
-﻿namespace WebCarsProject.Services.jwtAuth.Responses
+﻿namespace CarZone.Services.jwtAuth.Responses
 {
     public class LoginResponse
     {

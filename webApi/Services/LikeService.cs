@@ -1,8 +1,8 @@
 ﻿using System.Linq;
-using WebCarsProject.Data;
-using WebCarsProject.Services.Interfaces;
+using CarZone.Data;
+using CarZone.Services.Interfaces;
 
-namespace WebCarsProject.Services
+namespace CarZone.Services
 {
     public class LikeService : ILikeService
     {

@@ -1,7 +1,7 @@
 ﻿using System.Linq;
-using WebCarsProject.Data;
+using CarZone.Data;
 
-namespace WebCarsProject.Models
+namespace CarZone.Models
 {
     public static class CarQueryExtensions
     {

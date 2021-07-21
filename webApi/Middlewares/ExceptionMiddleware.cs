@@ -5,9 +5,9 @@ using System;
 using System.Net;
 using System.Text.Json;
 using System.Threading.Tasks;
-using WebCarsProject.Models.DTOs;
+using CarZone.Models.DTOs;
 
-namespace WebCarsProject.Middlewares
+namespace CarZone.Middlewares
 {
     public class ExceptionMiddleware
     {

@@ -3,9 +3,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using WebCarsProject.Data;
+using CarZone.Data;
 
-namespace WebCarsProject.Controllers
+namespace CarZone.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

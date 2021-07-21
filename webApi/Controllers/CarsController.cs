@@ -3,12 +3,12 @@ using System.Net;
 using System.Net.Http;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using WebCarsProject.Data;
-using WebCarsProject.Models;
-using WebCarsProject.Models.DTOs;
-using WebCarsProject.Services;
+using CarZone.Data;
+using CarZone.Models;
+using CarZone.Models.DTOs;
+using CarZone.Services;
 
-namespace WebCarsProject.Controllers
+namespace CarZone.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -43,11 +43,11 @@ namespace WebCarsProject.Controllers
             return _carService.GetCarById(id);
         }
 
-        [HttpPost("{id:int}/IncrementViews")]
-        public void IncrementViews(int id)
-        {
-            _carService.IncrementViews(id);
-        }
+        //[HttpPost("{id:int}/IncrementViews")]
+        //public void IncrementViews(int id)
+        //{
+        //    _carService.IncrementViews(id);
+        //}
 
         [HttpPut("{id:int}")]
         public void PutCar(int id, Car car)
@@ -67,11 +67,11 @@ namespace WebCarsProject.Controllers
             _carService.DeleteCarByIdAsync(id);
         }
 
-        [HttpGet("{carId:int}/Views")]
-        public int GetCountOfLikes(int carId)
-        {
-            return _carService.GetCountOfViews(carId);
-        }
+        //[HttpGet("{carId:int}/Views")]
+        //public int GetCountOfLikes(int carId)
+        //{
+        //    return _carService.GetCountOfViews(carId);
+        //}
 
         [HttpGet("Liked")]
         public IEnumerable<CarDTO> GetUsersLikedCars()

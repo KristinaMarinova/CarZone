@@ -1,4 +1,4 @@
-﻿namespace WebCarsProject.Data
+﻿namespace CarZone.Data
 {
     public abstract class Nomenclature
     {

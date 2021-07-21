@@ -1,9 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System;
+﻿using System;
 using System.Collections.Generic;
 
-namespace WebCarsProject.Data
+namespace CarZone.Data
 {
     public class Car
     {
@@ -29,22 +27,5 @@ namespace WebCarsProject.Data
         public DateTime CreatedTime { get; set; } = DateTime.UtcNow;
         public virtual ICollection<Comment> Comments { get; set; }
         public virtual ICollection<Description> Descriptions { get; set; }
-
-    }
-    public class CarConfiguration : IEntityTypeConfiguration<Car>
-    {
-        public void Configure(EntityTypeBuilder<Car> builder)
-        {
-            builder.ToTable("Cars");
-            builder.HasKey(x => x.Id);
-            builder.Property(x => x.BrandId).IsRequired();
-            builder.Property(x => x.TransmissionId).IsRequired();
-            builder.Property(x => x.FuelId).IsRequired();
-            builder.Property(x => x.ColorId).IsRequired();
-            builder.Property(x => x.Model).HasMaxLength(20).IsRequired();
-            builder.Property(x => x.Price).IsRequired();
-            builder.Property(x => x.Km).IsRequired();
-            builder.Property(x => x.IsAvailable).IsRequired();
-        }
     }
 }

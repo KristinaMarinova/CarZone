@@ -1,10 +1,10 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using System;
 using System.Threading.Tasks;
-using WebCarsProject.Services.jwtAuth.Helpers;
-using WebCarsProject.Services.jwtAuth.Requirements;
+using CarZone.Services.jwtAuth.Helpers;
+using CarZone.Services.jwtAuth.Requirements;
 
-namespace WebCarsProject.Services.jwtAuth.Handlers
+namespace CarZone.Services.jwtAuth.Handlers
 {
 
     public class CustomerBlockedStatusHandler : AuthorizationHandler<CustomerBlockedStatusRequirement>

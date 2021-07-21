@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using System.Security.Claims;
 
-namespace WebCarsProject.Services
+namespace CarZone.Services
 {
     public class UserContext
     {

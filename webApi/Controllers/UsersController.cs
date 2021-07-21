@@ -5,13 +5,13 @@ using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using WebCarsProject.Data;
-using WebCarsProject.Models.DTOs;
-using WebCarsProject.Services.jwtAuth.Interfaces;
-using WebCarsProject.Services.jwtAuth.Requests;
-using WebCarsProject.Services.jwtAuth.Responses;
+using CarZone.Data;
+using CarZone.Models.DTOs;
+using CarZone.Services.jwtAuth.Interfaces;
+using CarZone.Services.jwtAuth.Requests;
+using CarZone.Services.jwtAuth.Responses;
 
-namespace WebCarsProject.Controllers
+namespace CarZone.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

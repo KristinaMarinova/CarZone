@@ -1,4 +1,4 @@
-﻿namespace WebCarsProject.Services.Interfaces
+﻿namespace CarZone.Services.Interfaces
 {
     public interface ILikeService
     {

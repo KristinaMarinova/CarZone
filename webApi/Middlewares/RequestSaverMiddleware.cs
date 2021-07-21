@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using System.Threading.Tasks;
-using WebCarsProject.Data;
+using CarZone.Data;
 
-namespace WebCarsProject.Middlewares
+namespace CarZone.Middlewares
 {
     public class RequestSaverMiddleware
     {

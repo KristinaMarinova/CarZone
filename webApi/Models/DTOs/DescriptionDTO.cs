@@ -1,4 +1,4 @@
-﻿namespace WebCarsProject.Models.DTOs
+﻿namespace CarZone.Models.DTOs
 {
     public class DescriptionDTO
     {

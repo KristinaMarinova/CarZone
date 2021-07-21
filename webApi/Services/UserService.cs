@@ -2,13 +2,13 @@
 using System;
 using System.Linq;
 using System.Threading.Tasks;
-using WebCarsProject.Data;
-using WebCarsProject.Services.jwtAuth.Helpers;
-using WebCarsProject.Services.jwtAuth.Interfaces;
-using WebCarsProject.Services.jwtAuth.Requests;
-using WebCarsProject.Services.jwtAuth.Responses;
+using CarZone.Data;
+using CarZone.Services.jwtAuth.Helpers;
+using CarZone.Services.jwtAuth.Interfaces;
+using CarZone.Services.jwtAuth.Requests;
+using CarZone.Services.jwtAuth.Responses;
 
-namespace WebCarsProject.Services.jwtAuth.Services
+namespace CarZone.Services.jwtAuth.Services
 {
     public class UserService : IUserService
     {

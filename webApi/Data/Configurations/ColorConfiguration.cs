@@ -7,7 +7,7 @@ namespace CarZone.Data.Configurations
     {
         public void Configure(EntityTypeBuilder<Color> builder)
         {
-            //builder.HasKey(x => x.Id);
+            builder.HasKey(x => x.Id);
         }
     }
 }

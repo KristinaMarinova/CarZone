@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { CarModel } from 'src/app/models/carModel';
 import { UserModel } from 'src/app/models/userModel';
-import { UsersService } from 'src/app/services/users.service';
+import { UsersService } from 'src/app/services/users/users.service';
 
 @Component({
   selector: 'app-car-features',

@@ -9,7 +9,7 @@ namespace CarZone.Data
         {
         }
 
-        public AppDbContext(DbContextOptions db) : base(db)
+        public AppDbContext(DbContextOptions<AppDbContext> db) : base(db)
         {
 
         }
@@ -23,17 +23,16 @@ namespace CarZone.Data
             builder.ApplyConfiguration(new FuelConfiguration());
             builder.ApplyConfiguration(new TransmissionConfiguration());
             builder.ApplyConfiguration(new UserConfiguration());
-            builder.ApplyConfiguration(new UserTypeConfiguration());
-            builder.ApplyConfiguration(new RequestSaverConfiguration());
+            builder.ApplyConfiguration(new RoleConfiguration());
         }
 
         public DbSet<Car> Cars { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<ProfileImg> ProfileImgs { get; set; }
         public DbSet<Comment> Comments { get; set; }
-        public DbSet<Description> Descriptions { get; set; }
+        public DbSet<Part> Parts { get; set; }
         public DbSet<Like> Likes { get; set; }
-        public virtual DbSet<RequestSaver> RequestSavers { get; set; }
-        public virtual DbSet<UserType> UserTypes { get; set; }
+        public virtual DbSet<Role> Roles { get; set; }
         public virtual DbSet<Fuel> Fuels { get; set; }
         public virtual DbSet<Color> Colors { get; set; }
         public virtual DbSet<Brand> Brands { get; set; }

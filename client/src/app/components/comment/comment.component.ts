@@ -1,10 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { EMPTY } from 'rxjs';
-import { finalize } from 'rxjs/operators';
 import { AddCommentModel } from 'src/app/models/addComentModel';
 import { CommentModel } from 'src/app/models/comentModel';
-import { CommentService } from 'src/app/services/comment.service';
-import { UsersService } from 'src/app/services/users.service';
+import { CommentService } from 'src/app/services/cars/comment.service';
 
 @Component({
   selector: 'app-comment',

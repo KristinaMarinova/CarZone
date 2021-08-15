@@ -1,7 +1,9 @@
+import { HttpClient, HttpEventType } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { UserProfileModel } from 'src/app/models/UserProfileModel';
-import { UsersService } from 'src/app/services/users.service';
+import { UsersService } from 'src/app/services/users/users.service';
 
 @Component({
   selector: 'app-user-profile',
@@ -10,13 +12,17 @@ import { UsersService } from 'src/app/services/users.service';
 })
 export class UserProfileComponent implements OnInit {
 
+  profilePic: File | null = null;
+
   user = new UserProfileModel();
   hideDiv: boolean = false;
   userId = +localStorage.getItem('userId');
 
   constructor(
     private route: ActivatedRoute,
-    private userService: UsersService
+    private userService: UsersService,
+    private toastrService: ToastrService,
+    private http: HttpClient
   ) { }
 
   ngOnInit(): void {

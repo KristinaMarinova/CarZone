@@ -17,12 +17,11 @@ namespace CarZone.Models.DTOs
         public Color Color { get; set; }
         public int Km { get; set; }
         public int Year { get; set; }
-        public int ViewCount { get; set; }
         public int LikesCount { get; set; }
         public Transmission Transmission { get; set; }
         public double Price { get; set; }
         public int UserId { get; set; }
-        public List<Description> Description { get; set; }
+        public List<Part> Parts { get; set; }
 
         public static Expression<Func<Car, CarDTO>> SelectExpression
         {
@@ -43,7 +42,7 @@ namespace CarZone.Models.DTOs
                     Year = e.Year,
                     UserId = e.UserId,
                     Brand = e.Brand,    
-                    Description = e.Descriptions.ToList()
+                    Parts = e.Parts.ToList()
                 };
             }
         }

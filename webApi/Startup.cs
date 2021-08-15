@@ -16,6 +16,10 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using CarZone.Services.jwtAuth.Helpers;
 using System;
+using CarZone.Data.Configurations;
+using Microsoft.Extensions.FileProviders;
+using Microsoft.AspNetCore.Http;
+using System.IO;
 
 namespace CarZone
 {
@@ -30,19 +34,19 @@ namespace CarZone
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<AppDbContext>(opt =>
-               opt.UseSqlServer(Configuration.GetConnectionString("CarZoneContext")));
-           
+            services.ConfigureDbContext(
+                Configuration.GetSection("DbConfiguration:CarZoneConnectionString").Value,
+                Configuration.GetSection("DbConfiguration:LogConnectionString").Value
+            );
+
             services.AddScoped<ICarService, CarService>();
             services.AddScoped(typeof(INomenclatureService<>), typeof(NomenclatureService<>));
             services.AddScoped(typeof(ICommentService), typeof(CommentService));
             services.AddScoped(typeof(ILikeService), typeof(LikeService));
-            services.AddScoped<IHisoryDescriptionService, HisoryDescriptionService>();
-
-
+            services.AddScoped<IPartService, PartsService>();
             services.AddScoped<UserContext>();
-
             services.AddScoped<IUserService, UserService>();
+
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                     .AddJwtBearer(options =>
                     {
@@ -59,7 +63,6 @@ namespace CarZone
                         };
 
                     });
-
             services.AddAuthorization(options => options.DefaultPolicy = new AuthorizationPolicyBuilder()
                 .RequireAuthenticatedUser()
                 .Build()
@@ -73,7 +76,7 @@ namespace CarZone
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            app.UseMiddleware<ExceptionMiddleware>(); 
+            app.UseMiddleware<ExceptionMiddleware>();
             app.UseRequestSaver();
 
             if (env.IsDevelopment())

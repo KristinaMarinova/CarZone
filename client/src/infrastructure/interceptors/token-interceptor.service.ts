@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
-import { UsersService } from '../../app/services/users.service';
+import { UsersService } from 'src/app/services/users/users.service';
 
 @Injectable({
   providedIn: 'root'
@@ -17,22 +17,38 @@ export class TokenInterceptor implements HttpInterceptor {
   ) { }
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    request = request.clone({
-      setHeaders: {
-        Authorization: `Bearer ${this.auth.getToken()}`
-      }
-    });
-
-    return next.handle(request).pipe(tap(() => { },
-      (err: any) => {
-        if (err instanceof HttpErrorResponse) {
-          // if (err.status !== 401) {
-          //   return;
-          // }
-          this.auth.logout();
-          this.router.navigate(['home']);
+    if (this.auth.isLogged()) {
+      request = request.clone({
+        setHeaders: {
+          Authorization: `Bearer ${this.auth.getToken()}`
         }
-      }
-    ));
+      });
+    }
+    else {
+      this.auth.logout();
+    }
+
+    return next.handle(request);
   }
+
+  // intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+  //   request = request.clone({
+  //     setHeaders: {
+  //       Authorization: `Bearer ${this.auth.getToken()}`
+  //     }
+  //   });
+
+  //   return next.handle(request).pipe(tap(() => { },
+  //     (err: any) => {
+  //       if (err instanceof HttpErrorResponse) {
+
+  //         // if (err.status !== 401) {
+  //         //   return;
+  //         // }
+  //         this.auth.logout();
+  //         this.router.navigate(['home']);
+  //       }
+  //     }
+  //   ));
+  // }
 }

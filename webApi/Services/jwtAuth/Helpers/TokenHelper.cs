@@ -26,9 +26,13 @@ namespace CarZone.Services.jwtAuth.Helpers
             var key = Convert.FromBase64String(Secret);
 
             var claimsIdentity = new ClaimsIdentity(new[] {
-                new Claim(ClaimTypes.NameIdentifier, customer.Id.ToString()),
-            });
-            var signingCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature);
+                new Claim(
+                    ClaimTypes.NameIdentifier, 
+                    customer.Id.ToString())});
+
+            var signingCredentials = new SigningCredentials(
+                new SymmetricSecurityKey(key),
+                SecurityAlgorithms.HmacSha256Signature);
 
             var tokenDescriptor = new SecurityTokenDescriptor
             {
@@ -36,9 +40,9 @@ namespace CarZone.Services.jwtAuth.Helpers
                 Issuer = Issuer,
                 Audience = Audience,
                 Expires = DateTime.Now.AddDays(1),
-                SigningCredentials = signingCredentials,
-
+                SigningCredentials = signingCredentials
             };
+
             var token = tokenHandler.CreateToken(tokenDescriptor);
             return tokenHandler.WriteToken(token);
         }

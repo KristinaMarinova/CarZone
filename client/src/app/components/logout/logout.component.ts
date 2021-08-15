@@ -1,7 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { faHeart } from '@fortawesome/free-solid-svg-icons';
-import { UsersService } from 'src/app/services/users.service';
+import { UsersService } from 'src/app/services/users/users.service';
 
 @Component({
   selector: 'app-logout',
@@ -11,8 +10,7 @@ import { UsersService } from 'src/app/services/users.service';
 export class LogoutComponent implements OnInit {
 
   constructor(
-    private userService: UsersService,
-    private router: Router
+    private userService: UsersService
   ) {
   }
 
@@ -21,8 +19,6 @@ export class LogoutComponent implements OnInit {
 
   logoutUser() {
     this.userService.logout();
-    this.router.navigate(['home']);
   }
-
 
 }

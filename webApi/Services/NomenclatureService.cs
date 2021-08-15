@@ -14,9 +14,13 @@ namespace CarZone.Services
         {
             this.context = context;
         }
+
         public IEnumerable<TNomenclature> GetAll()
         {
-            return context.Set<TNomenclature>().OrderBy(x => x.Id).ToList();
+            return context
+                .Set<TNomenclature>()
+                .OrderBy(x => x.Name)
+                .ToList();
         }
 
         public IEnumerable<TNomenclature> GetFiltered(string textFilter, int limit, int offset)
@@ -26,10 +30,12 @@ namespace CarZone.Services
 
             if (!string.IsNullOrWhiteSpace(textFilter))
             {
-                query = query.Where(e => e.Name.Trim().ToLower().Contains(textFilter.Trim().ToLower()));
+                query = query
+                    .Where(e => e.Name.Trim().ToLower().Contains(textFilter.Trim().ToLower()));
             }
 
-            return query.OrderBy(e => e.Id)
+            return query
+                .OrderBy(e => e.Name)
                 .Skip(offset)
                 .Take(limit)
                 .ToList();
@@ -42,10 +48,12 @@ namespace CarZone.Services
 
             return model;
         }
+
         public async Task<TNomenclature> GetByIdAsync(int id)
         {
             return await context.FindAsync<TNomenclature>(id);
         }
+
         public async Task<TNomenclature> UpdateAsync(int id, TNomenclature model)
         {
             var existingItem = context.Find<TNomenclature>(id);
@@ -57,6 +65,7 @@ namespace CarZone.Services
             }
             return model;
         }
+
         public void Delete(int id)
         {
             var itemToDelete = context.Find<TNomenclature>(id);

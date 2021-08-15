@@ -1,7 +1,7 @@
 import { Input } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import { PartDescriptionModel } from 'src/app/models/partDescriptionModel';
-import { CarDetailService } from 'src/app/services/car-detail.service';
+import { CarDetailService } from 'src/app/services/cars/car-detail.service';
 
 @Component({
   selector: 'parts-history-table',

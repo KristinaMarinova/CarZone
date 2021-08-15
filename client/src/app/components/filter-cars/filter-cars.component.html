@@ -1,57 +1,48 @@
 <div style="margin: 3em;">
     <form (submit)="search()">
         <div>
-            <div class="row"
-                 style="align-items: center;">
+            <div class="row" style="align-items: center;">
                 <div class="col-sm-12 col-md-12 col-lg-2 col-xl-2">
                     <div class="row">
                         <label class="col-4">Brand</label>
-                        <app-async-select class="col-8"
-                                          restUrl="api/Brands/Select"
-                                          [(ngModel)]="filterObjectsModel.brand"
-                                          (ngModelChange)="filterModel.brandId = $event?.id"></app-async-select>
+                        <app-async-select class="col-8" restUrl="api/Brands/Select"
+                            [(ngModel)]="filterObjectsModel.brand" (ngModelChange)="filterModel.brandId = $event?.id">
+                        </app-async-select>
                     </div>
                 </div>
                 <div class="col-sm-12 col-md-12 col-lg-2 col-xl-2">
                     <div class="row">
                         <label class="col-4">Fuel</label>
-                        <app-async-select class="col-8"
-                                          restUrl="api/Fuels/Select"
-                                          [(ngModel)]="filterObjectsModel.fuel"
-                                          (ngModelChange)="filterModel.fuelId = $event?.id"></app-async-select>
+                        <app-async-select class="col-8" restUrl="api/Fuels/Select" [(ngModel)]="filterObjectsModel.fuel"
+                            (ngModelChange)="filterModel.fuelId = $event?.id"></app-async-select>
                     </div>
                 </div>
                 <div class="col-sm-12 col-md-12 col-lg-2 col-xl-2">
                     <div class="row">
                         <label class="col-4">Transmission</label>
-                        <app-async-select class="col-8"
-                                          restUrl="api/Transmissions/Select"
-                                          [(ngModel)]="filterObjectsModel.transmission"
-                                          (ngModelChange)="filterModel.transmissionId = $event?.id">All
+                        <app-async-select class="col-8" restUrl="api/Transmissions/Select"
+                            [(ngModel)]="filterObjectsModel.transmission"
+                            (ngModelChange)="filterModel.transmissionId = $event?.id">All
                         </app-async-select>
                     </div>
                 </div>
                 <div class="col-sm-12 col-md-12 col-lg-2 col-xl-2">
                     <div class="row">
                         <label class="col-4">Color</label>
-                        <app-async-select class="col-8"
-                                          restUrl="api/Colors/Select"
-                                          [(ngModel)]="filterObjectsModel.color"
-                                          (ngModelChange)="filterModel.colorId = $event?.id"></app-async-select>
+                        <app-async-select class="col-8" restUrl="api/Colors/Select"
+                            [(ngModel)]="filterObjectsModel.color" (ngModelChange)="filterModel.colorId = $event?.id">
+                        </app-async-select>
                     </div>
                 </div>
                 <div class="col-sm-12 col-md-12 col-lg-2 col-xl-2">
                     <div class="row">
                         <label class="col-4">Model</label>
-                        <input class="col-8"
-                               [(ngModel)]="filterModel.model" />
+                        <input class="col-8" [(ngModel)]="filterModel.model" />
                     </div>
                 </div>
                 <div class="col-sm-12 col-md-12 col-lg-2 col-xl-2">
                     <div class="row ml-4">
-                        <button type="button"
-                                class="btn btn-outline-dark"
-                                (click)="clear()">clear</button>
+                        <button type="button" class="btn btn-outline-dark" (click)="clear()">clear</button>
                     </div>
                 </div>
             </div>

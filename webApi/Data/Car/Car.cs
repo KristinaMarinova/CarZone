@@ -26,6 +26,6 @@ namespace CarZone.Data
         public User User { get; set; }
         public DateTime CreatedTime { get; set; } = DateTime.UtcNow;
         public virtual ICollection<Comment> Comments { get; set; }
-        public virtual ICollection<Description> Descriptions { get; set; }
+        public virtual ICollection<Part> Parts { get; set; }
     }
 }

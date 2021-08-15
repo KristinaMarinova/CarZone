@@ -13,8 +13,6 @@ namespace CarZone.Services
         Car AddCar(Car car);
         void UpdateCarAsync(int id, Car car);
         void DeleteCarByIdAsync(int id);
-        //void IncrementViews(int id);
-        //public int GetCountOfViews(int carId);
         IEnumerable<CarDTO> GetUsersLikedCars();
     }
 }

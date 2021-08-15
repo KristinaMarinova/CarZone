@@ -1,8 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { UserLoginModel } from 'src/app/models/userLoginModel';
-import { UsersResource } from 'src/app/services/users-resource.service';
-import { UsersService } from 'src/app/services/users.service';
+import { UsersResource } from 'src/app/services/users/users-resource.service';
+import { UsersService } from 'src/app/services/users/users.service';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +16,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private userService: UsersService,
     private userResource: UsersResource,
-    private router: Router
+    private router: Router,
+    private toastrService: ToastrService,
   ) {
   }
 
@@ -27,6 +29,7 @@ export class LoginComponent implements OnInit {
       .subscribe(
         (data) => {
           this.userService.login(data.token, data.userId);
+          this.toastrService.success("Login success");
           this.router.navigate(['cars']);
         }
       );

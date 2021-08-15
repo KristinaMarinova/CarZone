@@ -1,0 +1,85 @@
+﻿using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using CarZone.Data;
+using CarZone.Services.Interfaces;
+
+namespace CarZone.Services
+{
+    public class PartsService : IPartService
+    {
+        private readonly AppDbContext context;
+        private readonly UserContext user;
+        public PartsService(AppDbContext context, UserContext user)
+        {
+            this.context = context;
+            this.user = user;
+        }
+
+        public IEnumerable<Part> GetAllParts(int carId)
+        {
+            var d = this.context.Parts.Where(x => x.CarId == carId).ToList();
+            return d;
+        }
+
+        public Part GetById(int id)
+        {
+            return context.Parts.Where(x => x.Id == id).SingleOrDefault();
+        }
+
+        public void AddPart(int carId, List<Part> descriptionList)
+        {
+            foreach (var description in descriptionList)
+            {
+                description.UserId = user.UserId;
+                description.CarId = carId;
+                context.Parts.Add(description);
+            }
+            context.SaveChanges();
+        }
+
+        public async Task UpdatePart(int carId, List<Part> description)
+        {
+            var existingHistoryDetails = await context.Parts
+                .Where(c => c.CarId == carId)
+                .ToListAsync();
+
+            var forAdd = description.Where(e => !existingHistoryDetails.Any(ehd => ehd.Id == e.Id));
+
+
+            if (forAdd.Any())
+            {
+                foreach (var item in forAdd)
+                {
+                    item.CarId = carId;
+                    item.UserId = user.UserId;
+                }
+                context.Parts.AddRange(forAdd);
+            }
+
+            var forDelete = existingHistoryDetails.Where(e => !description.Any(d => d.Id == e.Id));
+            if (forDelete.Any())
+            {
+                context.Parts.RemoveRange(forDelete);
+            }
+
+            var forUpdate = existingHistoryDetails.Where(e => description.Any(d => d.Id == e.Id));
+            foreach (var item in forUpdate)
+            {
+                var updatedValue = description.Single(e => e.Id == item.Id);
+                item.Name = updatedValue.Name;
+                item.Description= updatedValue.Description;
+            }
+
+            await context.SaveChangesAsync();
+        }
+
+        public void DeletePart(int descriptionId)
+        {
+            var descriptionToDelete = context.Parts.Where(e => e.Id == descriptionId).SingleOrDefault();
+            context.Parts.Remove(descriptionToDelete);
+            context.SaveChanges();
+        }
+    }
+}

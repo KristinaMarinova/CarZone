@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FilterModel } from 'src/app/services/filter.service';
-import { CarsService } from 'src/app/services/cars.service'
+import { CarsService } from 'src/app/services/cars/cars.service';
 import { CarModel } from 'src/app/models/carModel';
 import { ActivatedRoute } from '@angular/router';
 

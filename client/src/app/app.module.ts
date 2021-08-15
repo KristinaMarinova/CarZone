@@ -24,22 +24,22 @@ import { FilterCarsComponent } from './components/filter-cars/filter-cars.compon
 import { CarLikesComponent } from './components/car-likes/car-likes.component';
 import { CommentComponent } from './components/comment/comment.component';
 import { CarFeaturesComponent } from './components/car-features/car-features.component';
-import { EditCarBtnComponent } from './components/edit-car-btn/edit-car-btn.component';
-import { DeleteCarBtnComponent } from './components/delete-car-btn/delete-car-btn.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { LogoutComponent } from './components/logout/logout.component';
 import { CommentPreviewComponent } from './components/comment-preview/comment-preview.component';
 import { PartsHistoryTableComponent } from './components/parts-history-table/parts-history-table.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { LikedCarsBtnComponent } from './components/liked-cars-btn/liked-cars-btn.component';
 import { NewCarsComponent } from './components/new-cars/new-cars.component';
 import { ErrorInterceptor } from 'src/infrastructure/interceptors/error.interceptor';
 import { ToastrModule } from 'ngx-toastr';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+import { JwtModule } from '@auth0/angular-jwt';
+import { DeleteCarBtnComponent } from './components/buttons/delete-car-btn/delete-car-btn.component';
+import { EditCarBtnComponent } from './components/buttons/edit-car-btn/edit-car-btn.component';
+import { LikedCarsBtnComponent } from './components/buttons/liked-cars-btn/liked-cars-btn.component';
 
 @NgModule({
   declarations: [
@@ -77,28 +77,35 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     FontAwesomeModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot({
-      timeOut: 3000,
+      timeOut: 5000,
     }),
     TranslateModule.forRoot({
-      defaultLanguage: 'en',
+      defaultLanguage: 'bg',
       loader: {
         provide: TranslateLoader,
         useFactory: HttpLoaderFactory,
         deps: [HttpClient]
+      }
+    }),
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: () => {
+          return localStorage.getItem("access_token");
+        }
       }
     })
   ],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
-      useClass: TokenInterceptor,
+      useClass: ErrorInterceptor,
       multi: true
     },
     {
       provide: HTTP_INTERCEPTORS,
-      useClass: ErrorInterceptor,
+      useClass: TokenInterceptor,
       multi: true
-    }
+    },
   ],
   bootstrap: [AppComponent]
 })

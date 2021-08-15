@@ -1,32 +1,20 @@
 <div class="nav-item dropdown">
-    <a href="#"
-       data-toggle="dropdown"
-       class="nav-link dropdown-toggle mr-4"> {{'login.login' | translate }}</a>
+    <a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle mr-4"> {{'login.login' | translate }}</a>
     <div class="dropdown-menu action-form">
         <form>
             <div class="text-center mt-2">
                 <a href="#">{{'login.userInformation' | translate}}:</a>
             </div>
             <div class="form-group">
-                <input type="text"
-                       class="form-control form-control-sm"
-                       [(ngModel)]="userLoginModel.userName"
-                       placeholder="{{'login.username' | translate }}"
-                       required
-                       style="margin-top: 15px;">
+                <input type="text" class="form-control form-control-sm" [(ngModel)]="userLoginModel.userName"
+                    placeholder="{{'login.username' | translate }}" required style="margin-top: 15px;">
             </div>
             <div class="form-group">
-                <input type="password"
-                       class="form-control form-control-sm"
-                       [(ngModel)]="userLoginModel.password"
-                       placeholder="{{'login.password' | translate }}"
-                       required>
+                <input type="password" class="form-control form-control-sm" [(ngModel)]="userLoginModel.password"
+                    placeholder="{{'login.password' | translate }}" required>
             </div>
-            <input type="submit"
-                   class="btn btn-primary btn-block"
-                   value="{{'login.login' | translate }}"
-                   (click)="loginUser()"
-                   style="margin-bottom: 15px; font-family: Audiowide;">
+            <input type="submit" class="btn btn-primary btn-block" value="{{'login.login' | translate }}"
+                (click)="loginUser()" style="margin-bottom: 15px; font-family: Audiowide;">
             <div class="text-center mt-2">
                 <a href="#">{{'login.forgotYourPassword' | translate}} ?</a>
             </div>

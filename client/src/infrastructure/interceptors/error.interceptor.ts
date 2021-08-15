@@ -33,7 +33,7 @@ export class ErrorInterceptor implements HttpInterceptor {
                                 this.toastrService.error(error.error);
                             }
                         case 401:
-                            this.toastrService.error(error.statusText, error.status.toString());
+                            this.toastrService.error(error.statusText);
                             break;
                         case 500:
                             this.toastrService.error(error.error.message);

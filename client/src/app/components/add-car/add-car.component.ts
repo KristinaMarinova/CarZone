@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { CarModel } from 'src/app/models/carModel';
-import { CarsService } from 'src/app/services/cars.service';
 import { Router } from '@angular/router';
 import { PartDescriptionModel } from 'src/app/models/partDescriptionModel';
-import { CarDetailService } from 'src/app/services/car-detail.service';
+import { CarDetailService } from 'src/app/services/cars/car-detail.service';
+import { CarsService } from 'src/app/services/cars/cars.service';
 
 @Component({
   selector: 'app-add-car',

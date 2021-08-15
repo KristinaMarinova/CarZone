@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-
-import { UsersService } from 'src/app/services/users.service';
+import { UsersService } from 'src/app/services/users/users.service';
 
 @Component({
   selector: 'app-header',
@@ -19,10 +18,8 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
     this.loggedIn = this.userService.isLogged();
-
     this.userService.loginChanged
       .subscribe((isLogged: boolean) => this.loggedIn = isLogged);
-
   }
 
   logoutUser() {

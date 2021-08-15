@@ -1,7 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { CarModel } from 'src/app/models/carModel';
-import { CarLikesService } from 'src/app/services/car-likes.service';
-import { CarsService } from 'src/app/services/cars.service';
+import { CarLikesService } from 'src/app/services/cars/car-likes.service';
 
 @Component({
     selector: 'car-likes-btn',

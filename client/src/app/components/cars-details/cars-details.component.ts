@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CarModel } from 'src/app/models/carModel';
 import { PartDescriptionModel } from 'src/app/models/partDescriptionModel';
-import { CarDetailService } from 'src/app/services/car-detail.service';
-import { UsersService } from 'src/app/services/users.service';
+import { CarDetailService } from 'src/app/services/cars/car-detail.service';
+import { UsersService } from 'src/app/services/users/users.service';
 
 @Component({
   selector: 'app-cars-details',

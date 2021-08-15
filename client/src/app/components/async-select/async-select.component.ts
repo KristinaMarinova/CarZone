@@ -56,7 +56,7 @@ export class AsyncSelectComponent<T extends { name: string }> implements OnInit,
     ),
     this.loadMore$,
   ).pipe(
-    debounceTime(300),
+    debounceTime(700),
     switchMap(value => {
       const filter: { textFilter?: string, limit?: number, offset?: number } = {};
       filter.textFilter = value === 'boolean' ? null : value;

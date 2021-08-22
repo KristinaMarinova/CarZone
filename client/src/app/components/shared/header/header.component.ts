@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Subject } from 'rxjs';
 import { UsersService } from 'src/app/services/users/users.service';
 
 @Component({
@@ -9,7 +10,7 @@ import { UsersService } from 'src/app/services/users/users.service';
 })
 export class HeaderComponent implements OnInit {
   loggedIn: boolean = false;
-  isAdmin: boolean = false;
+  isAdmin: boolean;
 
   constructor(
     private userService: UsersService,
@@ -19,7 +20,8 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
     this.loggedIn = this.userService.isLogged();
-    this.isAdmin = this.userService.isAdmin;
+    this.userService.isAdmin.subscribe(data => this.isAdmin = data);
+
     this.userService.loginChanged
       .subscribe((isLogged: boolean) => this.loggedIn = isLogged);
   }

@@ -17,12 +17,32 @@ const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: '/', component: HomeComponent },
   { path: 'home', component: HomeComponent },
-  { path: 'cars', component: CarsListComponent, resolve: { cars: CarsResolver } },
+  {
+    path: 'cars', component: CarsListComponent,
+    resolve: { cars: CarsResolver }
+  },
   { path: 'newCars', component: NewCarsComponent },
-  { path: 'cars/:id', component: CarsDetailsComponent, resolve: { car: CarByIdResolver }, canActivate: [AuthGuardService] },
-  { path: 'add', component: AddCarComponent, canActivate: [AuthGuardService] },
-  { path: 'profile', component: UserProfileComponent, resolve: { user: UserResolver }, canActivate: [AuthGuardService] },
-  { path: 'admin', component: AdminComponent },
+  {
+    path: 'cars/:id', component: CarsDetailsComponent,
+    resolve: { car: CarByIdResolver },
+    canActivate: [AuthGuardService]
+  },
+  {
+    path: 'add', component: AddCarComponent,
+    canActivate: [AuthGuardService]
+  },
+  {
+    path: 'profile', component: UserProfileComponent,
+    resolve: { user: UserResolver },
+    canActivate: [AuthGuardService]
+  },
+  {
+    path: 'admin', component: AdminComponent,
+    canActivate: [AuthGuardService],
+    data: {
+      expectedRole: 'Admin'
+    }
+  },
   { path: '**', component: NotFoundComponent }
 ];
 

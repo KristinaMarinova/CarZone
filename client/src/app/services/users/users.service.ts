@@ -16,25 +16,25 @@ export class UsersService {
     private router: Router,
     public jwtHelper: JwtHelperService
   ) {
-
-    this.isUserAdmin();
   }
 
   private readonly token_property = 'access_token';
   loginChanged: Subject<boolean> = new Subject();
-  isAdmin: boolean;
+  isAdmin: Subject<boolean> = new Subject();
 
   login(token: string, userId: string, role: string, username: string): void {
     localStorage.setItem(this.token_property, token);
     localStorage.setItem('userId', userId);
-    localStorage.setItem('role', role);
     localStorage.setItem('username', username);
+    localStorage.setItem('role', Role[role]);
+    this.isAdmin.next(this.isUserAdmin());
     this.loginChanged.next(true);
   }
 
   logout(): void {
     localStorage.clear();
     this.router.navigate(['home']);
+    this.isAdmin.next(false);
     this.loginChanged.next(false);
   }
 
@@ -50,13 +50,12 @@ export class UsersService {
   }
 
   isUserAdmin() {
-    let role = JSON.parse(localStorage.getItem('role'));
-
-    if (Role[role] == 'Admin') {
-      this.isAdmin = true;
+    let role = localStorage.getItem('role');
+    if (role == 'Admin') {
+      return true;
     }
     else {
-      this.isAdmin = false;
+      return false;
     }
   }
 

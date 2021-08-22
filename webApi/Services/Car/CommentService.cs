@@ -10,11 +10,13 @@ namespace CarZone.Services
     {
         private readonly AppDbContext context;
         private readonly UserContext user;
+
         public CommentService(AppDbContext context, UserContext user)
         {
             this.context = context;
             this.user = user;
         }
+
         public IEnumerable<CommentDTO> GetAllComments(int carId)
         {
             var commentDTO = context.Comments
@@ -31,12 +33,13 @@ namespace CarZone.Services
 
             return commentDTO;
         }
+
         public int GetCountOfComments(int carId)
         {
             return context.Comments.Where(x => x.CarId == carId).Count();
         }
 
-        public Comment AddComment(int carId, string content)
+        public CommentDTO AddComment(int carId, string content, string username)
         {
             var commentToAdd = new Comment {
                 UserId = user.UserId,
@@ -47,9 +50,20 @@ namespace CarZone.Services
 
             context.Comments.Add(commentToAdd);
             context.SaveChanges();
-            return commentToAdd;
-        }
 
+            var userPicPath = context.Users.Where(x => x.UserName == username).Select(x => x.PicPath).FirstOrDefault();
+
+            var commentToReturn = new CommentDTO {
+                Id = commentToAdd.Id,
+                UserId = user.UserId,
+                Content = content,
+                UserName = username,
+                CreatedTime = DateTime.UtcNow,
+                UserProfilePicUrl = userPicPath
+            };
+
+            return commentToReturn;
+        }
 
 
         public IEnumerable<CommentDTO> DeleteComment(int carId, int commentId)
@@ -58,22 +72,13 @@ namespace CarZone.Services
                 .Where(x => x.CarId == carId && x.Id == commentId)
                 .SingleOrDefault();
 
-            context.Remove(commentToDelete);
-            context.SaveChanges();
+            if (commentToDelete != null)
+            {
+                context.Remove(commentToDelete);
+                context.SaveChanges();
+            }
 
-            var commentDTO = context.Comments
-              .Where(x => x.CarId == carId)
-               .Select(e => new CommentDTO {
-                   Id = e.Id,
-                   UserName = e.User.UserName,
-                   UserId = e.User.Id,
-                   UserProfilePicUrl = e.User.PicPath,
-                   Content = e.Content,
-                   CreatedTime = e.CreatedTime
-
-               }).ToList();
-
-            return commentDTO;
+            return this.GetAllComments(carId);
         }
 
         public void UpdateComment(int carId, int commentId, Comment comment)

@@ -8,7 +8,7 @@ namespace CarZone.Services
     {
         IEnumerable<CommentDTO> GetAllComments(int carId);
         int GetCountOfComments(int carId);
-        Comment AddComment(int carId, string content);
+        CommentDTO AddComment(int carId, string content, string username);
         IEnumerable<CommentDTO> DeleteComment(int carId, int commentId);
         void UpdateComment(int carId, int commentId, Comment comment);
     }

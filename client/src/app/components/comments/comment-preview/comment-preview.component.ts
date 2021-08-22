@@ -11,7 +11,7 @@ export class CommentPreviewComponent {
   userId: number = +localStorage.getItem('userId');
 
   deleteComment(value: number) {
-    this.deleteRequest.emit(value);
+    console.log(value);
   }
 
 }

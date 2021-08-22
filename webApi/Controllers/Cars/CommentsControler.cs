@@ -25,9 +25,9 @@ namespace CarZone.Controllers
         }
 
         [HttpPost]
-        public Comment PostComment(int carId, CommentToAdd comment)
+        public CommentDTO PostComment(int carId, CommentToAdd comment)
         {
-            var c = commentService.AddComment(carId, comment.Content);
+            var c = commentService.AddComment(carId, comment.Content, comment.Username);
             return c;
         }
 

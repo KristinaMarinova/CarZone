@@ -17,8 +17,8 @@ export class CommentService {
     return this.http.get(`api/Cars/${id}/Comments`);
   }
 
-  addComment(id: number, content: string): Observable<any> {
-    return this.http.post(`api/Cars/${id}/Comments`, { content: content });
+  addComment(id: number, content: string, username: string): Observable<any> {
+    return this.http.post(`api/Cars/${id}/Comments`, { content: content, username: username });
   }
 
   deleteComment(carId: number, commentId: number): Observable<any> {

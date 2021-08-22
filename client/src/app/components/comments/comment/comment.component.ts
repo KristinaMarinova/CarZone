@@ -32,8 +32,9 @@ export class CommentComponent implements OnInit {
 
   addComment() {
     this.hideBtn = true;
+    this.commentToAdd.userName = localStorage.getItem("username");
 
-    this.commentService.addComment(this.currentCar.id, this.commentToAdd.content)
+    this.commentService.addComment(this.currentCar.id, this.commentToAdd.content, this.commentToAdd.userName)
       .subscribe(data => {
         this.comments.push(data);
         this.hideBtn = false;

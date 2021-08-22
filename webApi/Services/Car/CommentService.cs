@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using CarZone.Data;
 using CarZone.Models.DTOs;
@@ -7,21 +8,21 @@ namespace CarZone.Services
 {
     public class CommentService : ICommentService
     {
-        private readonly AppDbContext _context;
-        private readonly UserContext _user;
+        private readonly AppDbContext context;
+        private readonly UserContext user;
         public CommentService(AppDbContext context, UserContext user)
         {
-            _context = context;
-            _user = user;
+            this.context = context;
+            this.user = user;
         }
         public IEnumerable<CommentDTO> GetAllComments(int carId)
         {
-            var commentDTO = _context.Comments
+            var commentDTO = context.Comments
               .Where(x => x.CarId == carId)
                .Select(e => new CommentDTO {
                    UserName = e.User.UserName,
                    UserId = e.User.Id,
-                  PicPath = e.User.PicPath,
+                   UserProfilePicUrl = e.User.PicPath,
                    Content = e.Content,
                    CreatedTime = e.CreatedTime,
                    Id = e.Id
@@ -32,33 +33,41 @@ namespace CarZone.Services
         }
         public int GetCountOfComments(int carId)
         {
-            return _context.Comments.Where(x => x.CarId == carId).Count();
+            return context.Comments.Where(x => x.CarId == carId).Count();
         }
-        public Comment AddComment(int carId, Comment comment)
+
+        public Comment AddComment(int carId, string content)
         {
-            comment.UserId = _user.UserId;
-            comment.CarId = carId;
-            _context.Comments.Add(comment);
-            _context.SaveChanges();
-            return comment;
+            var commentToAdd = new Comment {
+                UserId = user.UserId,
+                CarId = carId,
+                CreatedTime = DateTime.UtcNow,
+                Content = content
+            };
+
+            context.Comments.Add(commentToAdd);
+            context.SaveChanges();
+            return commentToAdd;
         }
+
+
 
         public IEnumerable<CommentDTO> DeleteComment(int carId, int commentId)
         {
-            var commentToDelete = _context.Comments
+            var commentToDelete = context.Comments
                 .Where(x => x.CarId == carId && x.Id == commentId)
                 .SingleOrDefault();
 
-            _context.Remove(commentToDelete);
-            _context.SaveChanges();
+            context.Remove(commentToDelete);
+            context.SaveChanges();
 
-            var commentDTO = _context.Comments
+            var commentDTO = context.Comments
               .Where(x => x.CarId == carId)
                .Select(e => new CommentDTO {
                    Id = e.Id,
                    UserName = e.User.UserName,
                    UserId = e.User.Id,
-                   PicPath = e.User.PicPath,
+                   UserProfilePicUrl = e.User.PicPath,
                    Content = e.Content,
                    CreatedTime = e.CreatedTime
 
@@ -69,14 +78,14 @@ namespace CarZone.Services
 
         public void UpdateComment(int carId, int commentId, Comment comment)
         {
-            var existingComment = _context.Comments
+            var existingComment = context.Comments
                .Where(x => x.Id == commentId && x.CarId == carId)
                .SingleOrDefault();
 
             if (existingComment != null)
             {
                 existingComment.Content = comment.Content;
-                _context.SaveChangesAsync();
+                context.SaveChangesAsync();
             }
         }
     }

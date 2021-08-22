@@ -5,6 +5,7 @@ import { Subject } from 'rxjs';
 import jwt_decode from 'jwt-decode';
 import { JwtHelperService } from "@auth0/angular-jwt";
 import { Router } from '@angular/router';
+import { Role } from 'src/app/models/enums/role';
 
 @Injectable({
   providedIn: 'root'
@@ -14,15 +15,20 @@ export class UsersService {
     private http: HttpClient,
     private router: Router,
     public jwtHelper: JwtHelperService
-  ) { }
+  ) {
+
+    this.isUserAdmin();
+  }
 
   private readonly token_property = 'access_token';
-
   loginChanged: Subject<boolean> = new Subject();
+  isAdmin: boolean;
 
-  login(token: string, userId: string): void {
+  login(token: string, userId: string, role: string, username: string): void {
     localStorage.setItem(this.token_property, token);
     localStorage.setItem('userId', userId);
+    localStorage.setItem('role', role);
+    localStorage.setItem('username', username);
     this.loginChanged.next(true);
   }
 
@@ -41,6 +47,17 @@ export class UsersService {
     }
 
     return token && token.length > 0;
+  }
+
+  isUserAdmin() {
+    let role = JSON.parse(localStorage.getItem('role'));
+
+    if (Role[role] == 'Admin') {
+      this.isAdmin = true;
+    }
+    else {
+      this.isAdmin = false;
+    }
   }
 
   getById(id: number): Observable<any> {
@@ -67,7 +84,6 @@ export class UsersService {
     return this.http.post('api/Users/UploadFileAsync', formData, { reportProgress: true, observe: 'events' });
   }
 
-  // auth
   public getToken(): string {
     return localStorage.getItem('access_token');
   }

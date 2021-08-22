@@ -1,0 +1,39 @@
+<div class="container">
+
+    <!-- <div>
+  filter component
+    </div> -->
+
+    <div class="row" *ngFor="let car of cars">
+
+        <div class="col">
+            <!-- CarImg -->
+        </div>
+
+        <div class="col">
+            <!-- CarModel -->
+
+        </div>
+
+        <div class="col">
+            <!-- UserName-->
+        </div>
+
+
+        <div class="col">
+            <!-- addedDate-->
+        </div>
+
+        <div class="col">
+            <!-- View-->
+        </div>
+
+        <div style=" display: flex; justify-content: center" *ngIf="cars.length > 9">
+            <ngb-pagination [pageSize]="pageSize" [(page)]="page" [collectionSize]="cars.length" [boundaryLinks]="true">
+            </ngb-pagination>
+        </div>
+
+    </div>
+
+
+</div>

@@ -1,8 +1,7 @@
 export class CommentModel {
     id: number;
-    userName: string;
     userId: number;
+    userName: string;
     userProfilePicUrl: string;
     content: string;
-    createdTime: Date;
 }

@@ -10,15 +10,15 @@ export class CarDetailService {
 
   constructor(private http: HttpClient) { }
 
+  getPartsHistory(carId: number): Observable<any> {
+    return this.http.get(`api/Cars/${carId}/part`);
+  }
+
   addDetails(carId: number, details: PartDescriptionModel[]): Observable<any> {
-    return this.http.post(`api/Cars/${carId}/description`, details);
+    return this.http.post(`api/Cars/${carId}/part`, details);
   }
 
-  getDetails(carId: number): Observable<any> {
-    return this.http.get(`api/Cars/${carId}/description`)
-  }
-
-  updateDetail(carId: number, historyDetails: any): Observable<any> {
-    return this.http.put(`api/Cars/${carId}/description`, historyDetails)
+  updateDetail(carId: number, partsHistory: any): Observable<any> {
+    return this.http.put(`api/Cars/${carId}/part`, partsHistory)
   }
 }

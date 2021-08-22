@@ -1,0 +1,37 @@
+<div class="container">
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Part</th>
+                    <th scope="col">Description</th>
+                    <th scope="col" *ngIf="canEdit">
+                        <div class="d-flex justify-content-center">
+                            <button type="button" class="btn btn-outline-dark mr-2" style="font-family: Audiowide;"
+                                (click)="addRow()">
+                                Add</button>
+                            <button type="button" class="btn btn-outline-dark" style="font-family: Audiowide;"
+                                (click)="update()">
+                                Update</button>
+                        </div>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of partsDetails, let i = index">
+                    <ng-container *ngIf="!canEdit">
+                        <td>{{item.name}}</td>
+                        <td>{{item.description}}</td>
+                    </ng-container>
+                    <ng-container *ngIf="canEdit">
+                        <td><input [(ngModel)]="item.name" /></td>
+                        <td><input [(ngModel)]="item.description" /></td>
+                        <td>
+                            <button type="button" class="btn btn-outline-dark" (click)="delete(i)">
+                                Delete</button>
+                        </td>
+                    </ng-container>
+                </tr>
+        </table>
+    </div>
+</div>

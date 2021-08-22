@@ -17,24 +17,24 @@ namespace CarZone.Controllers
     [ApiController]
     public class UsersController : ControllerBase
     {
-        private readonly AppDbContext _context;
-        private readonly IUserService _usersService;
+        private readonly AppDbContext context;
+        private readonly IUserService usersService;
         public UsersController(AppDbContext context, IUserService usersService)
         {
-            _context = context;
-            _usersService = usersService;
+            this.context = context;
+            this.usersService = usersService;
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<User>>> GetUsers()
+        public async Task<IEnumerable<User>> GetUsers()
         {
-            return await _context.Users.ToListAsync();
+            return await context.Users.ToListAsync();
         }
 
         [HttpGet("{id:int}")]
-        public async Task<ActionResult<UserDTO>> GetUser(int id)
+        public async Task<UserDTO> GetUser(int id)
         {
-            var user = await _context.Users.FindAsync(id);
+            var user = await context.Users.FindAsync(id);
 
             if (user == null)
             {
@@ -57,7 +57,7 @@ namespace CarZone.Controllers
         [HttpPut("{id:int}")]
         public User PutUser(int id, User user)
         {
-           return _usersService.UpdateUserInfo(id, user);
+           return usersService.UpdateUserInfo(id, user);
         }
 
         [HttpPost]
@@ -83,20 +83,20 @@ namespace CarZone.Controllers
                 return BadRequest("Phone number must be at least 10 numbers");
             }
 
-            return await _usersService.Register(user);
+            return await usersService.Register(user);
         }
 
         [HttpDelete("{id:int}")]
         public async Task<ActionResult<User>> DeleteUser(int id)
         {
-            var user = await _context.Users.FindAsync(id);
+            var user = await context.Users.FindAsync(id);
             if (user == null)
             {
                 return NotFound();
             }
 
-            _context.Users.Remove(user);
-            await _context.SaveChangesAsync();
+            context.Users.Remove(user);
+            await context.SaveChangesAsync();
 
             return user;
         }
@@ -108,14 +108,14 @@ namespace CarZone.Controllers
         {
             if (loginRequest == null || string.IsNullOrEmpty(loginRequest.Username) || string.IsNullOrEmpty(loginRequest.Password))
             {
-                throw new ArgumentException("Missing_login_details");
+                throw new ArgumentException("Missing login details");
             }
 
-            var loginResponse = await _usersService.Login(loginRequest);
+            var loginResponse = await usersService.Login(loginRequest);
 
             if (loginResponse == null)
             {
-                throw new ArgumentException("Invalid_credentials");
+                throw new ArgumentException("Invalid credentials");
             }
 
             return Ok(loginResponse);

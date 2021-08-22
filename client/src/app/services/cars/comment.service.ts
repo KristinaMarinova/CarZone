@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { AddCommentModel } from 'src/app/models/addComentModel';
+import { CommentModel } from 'src/app/models/comentModel';
 
 @Injectable({
   providedIn: 'root'
@@ -17,8 +17,8 @@ export class CommentService {
     return this.http.get(`api/Cars/${id}/Comments`);
   }
 
-  addComment(id: number, comment: AddCommentModel): Observable<any> {
-    return this.http.post(`api/Cars/${id}/Comments`, { Content: comment.content });
+  addComment(id: number, content: string): Observable<any> {
+    return this.http.post(`api/Cars/${id}/Comments`, { content: content });
   }
 
   deleteComment(carId: number, commentId: number): Observable<any> {

@@ -1,4 +1,4 @@
 export class PartDescriptionModel {
-    detail: string;
-    descriptionDetail: string;
+    name: string;
+    description: string;
 }

@@ -46,6 +46,8 @@ namespace CarZone
             services.AddScoped<IPartService, PartsService>();
             services.AddScoped<UserContext>();
             services.AddScoped<IUserService, UserService>();
+            services.AddSingleton<IAuthorizationHandler, CustomerBlockedStatusHandler>();
+
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                     .AddJwtBearer(options =>
@@ -63,11 +65,11 @@ namespace CarZone
                         };
 
                     });
+
             services.AddAuthorization(options => options.DefaultPolicy = new AuthorizationPolicyBuilder()
                 .RequireAuthenticatedUser()
                 .Build()
             );
-            services.AddSingleton<IAuthorizationHandler, CustomerBlockedStatusHandler>();
 
             services.AddHttpContextAccessor();
             services.AddControllers();

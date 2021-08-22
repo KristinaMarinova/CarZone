@@ -17,10 +17,9 @@ namespace CarZone.Services
             this.user = user;
         }
 
-        public IEnumerable<Part> GetAllParts(int carId)
+        public async Task<List<Part>> GetAllPartsAsync(int carId)
         {
-            var d = this.context.Parts.Where(x => x.CarId == carId).ToList();
-            return d;
+           return await context.Parts.Where(x => x.CarId == carId).ToListAsync();
         }
 
         public Part GetById(int id)
@@ -28,15 +27,16 @@ namespace CarZone.Services
             return context.Parts.Where(x => x.Id == id).SingleOrDefault();
         }
 
-        public void AddPart(int carId, List<Part> descriptionList)
+        public async Task AddPartAsync(int carId, List<Part> parts)
         {
-            foreach (var description in descriptionList)
+            foreach (var part in parts)
             {
-                description.UserId = user.UserId;
-                description.CarId = carId;
-                context.Parts.Add(description);
+                part.UserId = user.UserId;
+                part.CarId = carId;
+                context.Parts.Add(part);
             }
-            context.SaveChanges();
+
+            await context.SaveChangesAsync() ;
         }
 
         public async Task UpdatePart(int carId, List<Part> description)

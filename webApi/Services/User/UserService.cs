@@ -29,7 +29,7 @@ namespace CarZone.Services.jwtAuth.Services
 
             if (isUserExist == false)
             {
-                throw new ArgumentException("nqma takova potrebitelsko ime");
+                throw new ArgumentException("Wrong username or password!");
             }
 
             var customer = await _customersDbContext.Users
@@ -38,18 +38,19 @@ namespace CarZone.Services.jwtAuth.Services
             var passwordHash = PasswordEncrypt.ComputeHash(loginRequest.Password, customer.Salt);
             if (customer.Password != passwordHash)
             {
-                throw new ArgumentException("nqma takuv potrebitel");
+                throw new ArgumentException("Wrong username or password!");
             }
 
             customer.LastLogin = DateTime.UtcNow;
             await _customersDbContext.SaveChangesAsync();
 
             return new LoginResponse {
+                Role = customer.Role,
                 UserId = customer.Id,
                 Username = customer.UserName,
                 FirstName = customer.FirstName,
                 LastName = customer.LastName,
-                Token = TokenHelper.GenerateToken(customer),
+                Token = TokenHelper.GenerateToken(customer)
             };
         }
 
@@ -81,11 +82,10 @@ namespace CarZone.Services.jwtAuth.Services
                 Password = passwordResult.Hash,
                 Email = user.Email,
                 PicPath = user.PicPath,
-                RoleId = user.RoleId,
-                Roles = user.Roles,
                 LastLogin = DateTime.UtcNow,
                 Cars = user.Cars,
-                Salt = passwordResult.Salt
+                Salt = passwordResult.Salt,
+                Role = Role.User
             };
 
             _customersDbContext.Users.Add(userToAdd);

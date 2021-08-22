@@ -6,10 +6,10 @@ namespace CarZone.Services.Interfaces
 {
     public interface IPartService
     {
-        IEnumerable<Part> GetAllParts(int carId);
+        Task<List<Part>> GetAllPartsAsync(int carId);
         Part GetById(int id);
-        void AddPart(int carId, List<Part> description);
-        Task UpdatePart(int carId, List<Part> description);
+        Task AddPartAsync(int carId, List<Part> parts);
+        Task UpdatePart(int carId, List<Part> parts);
         void DeletePart(int descriptionId);
     }
 }

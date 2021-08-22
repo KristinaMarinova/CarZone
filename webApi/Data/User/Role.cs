@@ -1,8 +1,8 @@
 ﻿namespace CarZone.Data
 {
-    public class Role
+    public enum Role
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
+        Admin = 1,
+        User = 2,
     }
 }

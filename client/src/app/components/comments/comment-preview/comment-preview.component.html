@@ -1,0 +1,17 @@
+<div class="container mb-3">
+    <div class="d-flex ">
+        <img class="mr-3" style="max-width: 6%;" src={{comment.userProfilePicUrl}} alt="image"
+            onerror="this.src= '../../../assets/user-avatar-pngrepo-com.png'">
+        <div>{{comment.userName}}</div>
+    </div>
+
+    <div>
+        <div class="d-flex justify-content-between" style="margin-left: 8%;">
+            <div>{{comment.content}}</div>
+            <div>
+                <button type="button" *ngIf="comment.userId==userId" [ngClass]="{'btnDelete': comment.userId==userId}"
+                    class="btn btn-outline-danger btn-sm" (click)="deleteComment(comment.id)">Delete</button>
+            </div>
+        </div>
+    </div>
+</div>

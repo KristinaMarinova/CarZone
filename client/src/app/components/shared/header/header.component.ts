@@ -9,6 +9,7 @@ import { UsersService } from 'src/app/services/users/users.service';
 })
 export class HeaderComponent implements OnInit {
   loggedIn: boolean = false;
+  isAdmin: boolean = false;
 
   constructor(
     private userService: UsersService,
@@ -18,6 +19,7 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
     this.loggedIn = this.userService.isLogged();
+    this.isAdmin = this.userService.isAdmin;
     this.userService.loginChanged
       .subscribe((isLogged: boolean) => this.loggedIn = isLogged);
   }

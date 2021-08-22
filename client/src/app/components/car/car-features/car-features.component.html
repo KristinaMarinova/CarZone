@@ -1,0 +1,37 @@
+<div>
+    <div class="card border-dark">
+        <div class="card-body text-dark">
+            <h5 style="display: flex;justify-content: center;" class="card-title">Details:</h5>
+            <p class="card-text">Horsepower: {{car.horsepower}}</p>
+            <p class="card-text">Km: {{car.km}}</p>
+            <p class="card-text">Fuel: {{car.fuel.name}}</p>
+            <p class="card-text">Color: {{car.color.name}}</p>
+            <p class="card-text">Transmission: {{car.transmission.name}}</p>
+        </div>
+        <hr style="height: 6px;margin: -6px;">
+        <button type="button" class="btn btn-light btn-sm"
+            style="align-self: center;margin-bottom: 3px; margin-top: 3px;" data-toggle="modal"
+            data-target="#sellerProfile">
+            Seller profile</button>
+    </div>
+
+    <div class="modal fade" id="sellerProfile" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Seller profile</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>First name: {{sellerInfo.firstName}}</p>
+                    <p>Last name: {{sellerInfo.lastName}}</p>
+                    <p>Email: {{sellerInfo.email}}</p>
+                    <p>Phone: {{sellerInfo.phone}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,19 @@
+<div class="container">
+    <div>
+        <comment-preview *ngFor="let comment of comments; let i = index" [comment]="comment"
+            (deleteRequest)="deleteComment($event)"></comment-preview>
+    </div>
+
+    <div>
+        <div class="d-flex justify-content-center mb-4">
+            Add Comment
+        </div>
+        <div class="d-flex justify-content-center mb-4">
+            <input class="form-control" [(ngModel)]="commentToAdd.content" placeholder="Enter comment">
+        </div>
+        <div class="d-flex justify-content-center">
+            <button type="submit" class="btn btn-primary" [disabled]="hideBtn" (click)="addComment()">Add
+            </button>
+        </div>
+    </div>
+</div>

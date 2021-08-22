@@ -25,9 +25,10 @@ namespace CarZone.Controllers
         }
 
         [HttpPost]
-        public Comment PostComment(int carId, Comment comment)
+        public Comment PostComment(int carId, CommentToAdd comment)
         {
-            return commentService.AddComment(carId, comment);
+            var c = commentService.AddComment(carId, comment.Content);
+            return c;
         }
 
         [HttpDelete("{id:int}")]

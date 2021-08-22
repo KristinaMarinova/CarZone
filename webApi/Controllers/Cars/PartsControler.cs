@@ -6,43 +6,45 @@ using CarZone.Services.Interfaces;
 
 namespace CarZone.Controllers
 {
-    [Route("api/Cars/{carId:int}/description")]
+    [Route("api/Cars/{carId:int}/part")]
     [ApiController]
     public class PartsControler : ControllerBase
     {
 
-        private readonly IPartService descriptionService;
-        public PartsControler(IPartService descriptionService)
+        private readonly IPartService partService;
+        public PartsControler(IPartService partService)
         {
-            this.descriptionService = descriptionService;
+            this.partService = partService;
         }
 
         [HttpGet]
-        public IEnumerable<Part> GetAllHistory(int carId)
+        public async Task<List<Part>> GetAllHistoryAsync(int carId)
         {
-            return descriptionService.GetAllParts(carId);
+            return await partService.GetAllPartsAsync(carId);
         }
         
         [HttpGet("{id:int}")]
         public Part GetById(int id)
         {
-            return descriptionService.GetById(id);
+            return partService.GetById(id);
         }
 
         [HttpPost]
-        public void PostDescription(int carId, List<Part> descriptionList)
+        public async Task PostDescriptionAsync(int carId, List<Part> descriptionList)
         {
-            descriptionService.AddPart(carId, descriptionList);
+            await partService.AddPartAsync(carId, descriptionList);
         }
 
         [HttpPut]
         public Task UpdateDescription(int carId, List<Part> description)
-            => descriptionService.UpdatePart(carId, description);
+        {
+            return partService.UpdatePart(carId, description);
+        }
 
         [HttpDelete("{id:int}")]
         public void DeleteDescription(int id)
         {
-            descriptionService.DeletePart(id);
+            partService.DeletePart(id);
         }
 
     }

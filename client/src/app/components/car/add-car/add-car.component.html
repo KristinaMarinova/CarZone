@@ -75,39 +75,52 @@
             </div>
         </div>
 
-        <div class="row">
-            <div class="form-group col-sm-12 offset-md-3 col-md-6">
-                <label class="col-sm-12 col-md-2">Picture</label>
-                <input class="d-inline-block col-sm-12 col-md-10" style="margin-left: 15px; width: 79%;"
-                    [(ngModel)]="carModel.carPic" />
-            </div>
-        </div>
-        <div style="width: 47%;margin-left: auto;margin-right: auto;">
-            <table class="table">
+        <div class="container">
+            <table class="table" style="width: 50%; margin: auto;">
                 <thead>
                     <tr>
                         <th scope="col">Part</th>
                         <th scope="col">Description</th>
-                        <th><button type="button" class="btn btn-outline-dark"
-                                style="height: 30px;padding-top: 1px;padding-left: 6px;padding-right: 6px;"
-                                (click)="addRow()">
+                        <th class="d-flex justify-content-end"><button type="button" class="btn btn-outline-dark"
+                                (click)="addRow('part')">
                                 Add</button></th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let item of arr, let i = index">
-                        <td><input name="detail-{{i}}" [(ngModel)]="arr[i].name" /></td>
-                        <td><input name="descriptionDetail-{{i}}" [(ngModel)]="arr[i].description" /></td>
-                        <td><button type="button" class="btn btn-outline-dark" style="height: 30px;"
-                                (click)="deleteRow(i)">
+                    <tr *ngFor="let item of partsArr, let i = index">
+                        <td><input name="detail-{{i}}" [(ngModel)]="partsArr[i].name" /></td>
+                        <td><input name="descriptionDetail-{{i}}" [(ngModel)]="partsArr[i].description" /></td>
+                        <td><button type="button" class="btn btn-sm btn-outline-dark" (click)="deleteRow(i, 'part')">
                                 Delete</button></td>
 
                     </tr>
                 </tbody>
             </table>
         </div>
-    </form>
 
+        <div class="container mt-5 mb-5">
+            <table class="table" style="width: 50%; margin: auto;">
+                <thead>
+                    <tr>
+                        <th scope="col">PicUrl</th>
+                        <th scope="col" style="min-width: 260px;"></th>
+                        <th class="d-flex justify-content-end"><button type="button" class="btn btn-outline-dark"
+                                (click)="addRow('pic')">
+                                Add</button></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of picsArr, let i = index">
+                        <td><input name="pic-{{i}}" [(ngModel)]="picsArr[i].paths" /></td>
+                        <td></td>
+                        <td><button type="button" class="btn btn-sm btn-outline-dark" (click)="deleteRow(i, 'pic')">
+                                Delete</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </form>
 
     <button class="btn btn-outline-success form-group col-sm-12 offset-md-3 col-md-6"
         style="margin-top: 1em; margin-bottom: 2em;" (click)="addCar()">Add</button>

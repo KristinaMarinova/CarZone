@@ -16,7 +16,7 @@
                 <div *ngFor="let item of likedCars" class="carInfo" ng-hide="hideDiv" (click)="hide()"
                     data-dismiss="modal">
                     <div>
-                        <img id="carImg" src="{{item.carPic}}" alt="Card image"
+                        <img id="carImg" src="{{item.pictures[0].paths}}" alt="Card image"
                             onerror="this.src='https://image.freepik.com/free-photo/3d-rendering-white-question-mark-isolated-black-background_42071-126.jpg'"
                             [routerLink]="['cars', item.id]">
                         <a [routerLink]="['cars', item.id]" id="carDescription">{{item.brand.name}} {{item.model}}

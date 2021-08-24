@@ -17,7 +17,10 @@ export class LikedCarsBtnComponent {
 
   showLikedCars() {
     this.carLikesService.getUserLikedCars()
-      .subscribe((data: any) => this.likedCars = data);
+      .subscribe((data: any) => {
+        this.likedCars = data;
+      }
+      );
   }
 
   unlikeCar(car: CarModel) {

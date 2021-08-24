@@ -68,21 +68,26 @@ namespace CarZone.Services
             }
             context.SaveChanges();
         }
+
         public void DeleteCarByIdAsync(int id)
         {
-            var carToDelete = context.Cars.Where(e => e.Id == id).SingleOrDefault();
+            var carToDelete = context.Cars
+                .Where(e => e.Id == id)
+                .SingleOrDefault();
+
             context.Cars.Remove(carToDelete);
             context.SaveChanges();
         }
 
         public IEnumerable<CarDTO> GetUsersLikedCars()
         {
-            var result = context.Likes.Where(x => x.UserId == userContext.UserId)
+            var result = context.Likes
+                .Where(x => x.UserId == userContext.UserId)
                 .Select(e => new CarDTO {
                     Id = e.CarId,
                     Brand = e.Car.Brand,
                     Model = e.Car.Model,
-                    CarPic = e.Car.CarPic,
+                    Pictures = e.Car.Pictures.ToList(),
                     Price = e.Car.Price
                 }).ToList();
 

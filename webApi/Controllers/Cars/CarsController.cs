@@ -12,59 +12,59 @@ namespace CarZone.Controllers
     [ApiController]
     public class CarsController : ControllerBase
     {
-        private readonly ICarService _carService;
+        private readonly ICarService carService;
 
         public CarsController(
             ICarService carService
         )
         {
-            _carService = carService;
+            this.carService = carService;
         }
 
         [HttpGet("search")]
         [AllowAnonymous]
         public IEnumerable<CarDTO> CarsByQuery([FromQuery] CarFilter filter)
         {
-            return _carService.CarsByQueryAsync(filter);
+            return carService.CarsByQueryAsync(filter);
         }
 
         [HttpGet]
         [AllowAnonymous]
         public IEnumerable<CarDTO> GetCars()
         {
-            return _carService.GetAllCars();
+            return carService.GetAllCars();
         }
 
         [HttpGet("{id:int}")]
         public CarDTO GetCar(int id)
         {
-            return _carService.GetCarById(id);
+            return carService.GetCarById(id);
         }
 
 
         [HttpPut("{id:int}")]
         public void PutCar(int id, Car car)
         {
-            _carService.UpdateCarAsync(id, car);
+            carService.UpdateCarAsync(id, car);
         }
 
         [HttpPost]
         public Car PostCar(Car car)
         {
-            return _carService.AddCar(car);
+            return carService.AddCar(car);
         }
 
         [HttpDelete("{id:int}")]
         public void DeleteCar(int id)
         {
-            _carService.DeleteCarByIdAsync(id);
+            carService.DeleteCarByIdAsync(id);
         }
 
 
         [HttpGet("Liked")]
         public IEnumerable<CarDTO> GetUsersLikedCars()
         {
-            return _carService.GetUsersLikedCars();
+            return carService.GetUsersLikedCars();
         }
     }
 }

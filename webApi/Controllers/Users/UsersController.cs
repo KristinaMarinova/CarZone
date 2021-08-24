@@ -48,7 +48,7 @@ namespace CarZone.Controllers
                 UserName = user.UserName,
                 Email = user.Email,
                 Phone = user.Phone,
-                PicPath = user.PicPath
+                PicPath = user?.PicPath
             };
 
             return userToReturn;

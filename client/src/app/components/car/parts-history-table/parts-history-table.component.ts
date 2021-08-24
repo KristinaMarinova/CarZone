@@ -3,12 +3,10 @@ import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { PartDescriptionModel } from 'src/app/models/partDescriptionModel';
 import { CarDetailService } from 'src/app/services/cars/car-detail.service';
-import { UsersService } from 'src/app/services/users/users.service';
 
 @Component({
   selector: 'parts-history-table',
   templateUrl: './parts-history-table.component.html',
-  styleUrls: ['./parts-history-table.component.css']
 })
 export class PartsHistoryTableComponent implements OnInit {
 
@@ -19,7 +17,6 @@ export class PartsHistoryTableComponent implements OnInit {
   constructor(
     private carDetaiService: CarDetailService,
     private toastrService: ToastrService,
-    private userService: UsersService
   ) {
   }
 

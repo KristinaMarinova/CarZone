@@ -44,6 +44,7 @@ namespace CarZone
             services.AddScoped(typeof(ICommentService), typeof(CommentService));
             services.AddScoped(typeof(ILikeService), typeof(LikeService));
             services.AddScoped<IPartService, PartsService>();
+            services.AddScoped<IPictureService, PictureService>();
             services.AddScoped<UserContext>();
             services.AddScoped<IUserService, UserService>();
             services.AddSingleton<IAuthorizationHandler, CustomerBlockedStatusHandler>();

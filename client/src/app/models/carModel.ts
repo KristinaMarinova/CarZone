@@ -1,3 +1,5 @@
+import { CarPictureModel } from "./car-picture-model";
+
 export class CarModel {
     id: number;
     brand: any;
@@ -7,7 +9,6 @@ export class CarModel {
     km: number;
     transmission: any;
     transmissionId: number;
-    carPic: string;
     color: any;
     colorId: number;
     fuel: any;
@@ -17,4 +18,5 @@ export class CarModel {
     year: number;
     viewCount: number;
     userId: number;
+    pictures: CarPictureModel[];
 }

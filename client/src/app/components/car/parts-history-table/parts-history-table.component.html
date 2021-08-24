@@ -7,10 +7,10 @@
                     <th scope="col">Description</th>
                     <th scope="col" *ngIf="canEdit">
                         <div class="d-flex justify-content-center">
-                            <button type="button" class="btn btn-outline-dark mr-2" style="font-family: Audiowide;"
-                                (click)="addRow()">
+                            <button type="button" class="btn btn-sm btn-outline-dark mr-2"
+                                style="font-family: Audiowide;" (click)="addRow()">
                                 Add</button>
-                            <button type="button" class="btn btn-outline-dark" style="font-family: Audiowide;"
+                            <button type="button" class="btn btn-sm btn-outline-dark" style="font-family: Audiowide;"
                                 (click)="update()">
                                 Update</button>
                         </div>
@@ -26,10 +26,13 @@
                     <ng-container *ngIf="canEdit">
                         <td><input [(ngModel)]="item.name" /></td>
                         <td><input [(ngModel)]="item.description" /></td>
-                        <td>
-                            <button type="button" class="btn btn-outline-dark" (click)="delete(i)">
-                                Delete</button>
-                        </td>
+                        <div class="d-flex justify-content-center">
+                            <td></td>
+                            <td>
+                                <button type="button" class="btn btn-sm btn-outline-dark" (click)="delete(i)">
+                                    Delete</button>
+                            </td>
+                        </div>
                     </ng-container>
                 </tr>
         </table>

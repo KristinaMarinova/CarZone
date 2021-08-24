@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CarModel } from 'src/app/models/carModel';
-import { PartDescriptionModel } from 'src/app/models/partDescriptionModel';
-import { CarDetailService } from 'src/app/services/cars/car-detail.service';
 import { UsersService } from 'src/app/services/users/users.service';
 
 @Component({
@@ -18,12 +16,14 @@ export class CarsDetailsComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private userService: UsersService
+    private userService: UsersService,
   ) { }
 
   ngOnInit(): void {
     this.route.data
-      .subscribe((data: any) => this.currentCar = data.car);
+      .subscribe((data: any) => {
+        this.currentCar = data.car;
+      });
     this.canEditPost();
     this.likesCount = this.currentCar.likesCount;
   }

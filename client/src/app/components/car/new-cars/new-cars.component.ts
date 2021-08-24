@@ -5,7 +5,6 @@ import { CarsService } from 'src/app/services/cars/cars.service';
 @Component({
   selector: 'app-new-cars',
   templateUrl: './new-cars.component.html',
-  styleUrls: ['./new-cars.component.css']
 })
 export class NewCarsComponent implements OnInit {
   cars: NewCarModel[];

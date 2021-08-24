@@ -18,11 +18,19 @@ export class UsersResource {
     return this.http.post('api/Users', user);
   }
 
+  editInfo(id: number, user: any): Observable<any> {
+    return this.http.put(`api/Users/${id}`, user);
+  }
+
   loginUser(user: UserLoginModel): Observable<any> {
     return this.http.post('api/Users/login', user);
   }
 
   logout(cookie: string): any {
     this.http.post('api/Users/logout', cookie);
+  }
+
+  uploadFile(formData): Observable<any> {
+    return this.http.post('api/Users/UploadFileAsync', formData, { reportProgress: true, observe: 'events' });
   }
 }

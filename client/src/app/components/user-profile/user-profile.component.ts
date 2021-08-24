@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { UserProfileModel } from 'src/app/models/UserProfileModel';
+import { UsersResource } from 'src/app/services/users/users-resource.service';
 import { UsersService } from 'src/app/services/users/users.service';
 
 @Component({
@@ -11,27 +12,24 @@ import { UsersService } from 'src/app/services/users/users.service';
   styleUrls: ['./user-profile.component.css']
 })
 export class UserProfileComponent implements OnInit {
-
   profilePic: File | null = null;
-
-  user = new UserProfileModel();
+  user: UserProfileModel = new UserProfileModel();
   hideDiv: boolean = false;
   userId = +localStorage.getItem('userId');
 
   constructor(
     private route: ActivatedRoute,
-    private userService: UsersService,
-    private toastrService: ToastrService,
-    private http: HttpClient
+    private resource: UsersResource,
   ) { }
 
   ngOnInit(): void {
+
     this.route.data
-      .subscribe((data: any) => this.user = data.user);
+      .subscribe((result: any) => this.user = result.user);
   }
 
   editInfo(): void {
-    this.userService.editInfo(this.userId, this.user)
+    this.resource.editInfo(this.userId, this.user)
       .subscribe();
     this.hideDiv = true;
   }

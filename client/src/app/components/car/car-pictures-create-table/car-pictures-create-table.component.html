@@ -1,0 +1,31 @@
+<div class="container">
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">PicUrl</th>
+                    <th scope="col" style="min-width: 260px;"></th>
+                    <th scope="col">
+                        <div class="d-flex justify-content-center">
+                            <button type="button" class="btn btn-sm btn-outline-dark mr-2"
+                                style="font-family: Audiowide;" (click)="addRow()">
+                                Add</button>
+                            <button type="button" class="btn btn-sm btn-outline-dark" style="font-family: Audiowide;"
+                                (click)="update()">
+                                Update</button>
+                        </div>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let pic of pics, let i = index">
+                    <td><input [(ngModel)]="pic.paths" /></td>
+                    <th style="min-width: 260px;"></th>
+                    <td class="d-flex justify-content">
+                        <button type="button" class="btn btn-sm btn-outline-dark" (click)="delete(i)">
+                            Delete</button>
+                    </td>
+                </tr>
+        </table>
+    </div>
+</div>

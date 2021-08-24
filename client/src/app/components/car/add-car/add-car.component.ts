@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { PartDescriptionModel } from 'src/app/models/partDescriptionModel';
 import { CarDetailService } from 'src/app/services/cars/car-detail.service';
 import { CarsService } from 'src/app/services/cars/cars.service';
+import { CarPictureModel } from 'src/app/models/car-picture-model';
+import { CarPicturesService } from 'src/app/services/cars/car-pictures-service';
 
 @Component({
   selector: 'app-add-car',
@@ -13,11 +15,12 @@ import { CarsService } from 'src/app/services/cars/cars.service';
 export class AddCarComponent implements OnInit {
 
   carModel = new CarModel();
-
-  arr: PartDescriptionModel[] = [];
+  partsArr: PartDescriptionModel[] = [];
+  picsArr: CarPictureModel[] = [];
 
   constructor(private carService: CarsService,
     private carDetaiService: CarDetailService,
+    private carPicService: CarPicturesService,
     private router: Router) { }
 
   ngOnInit(): void {
@@ -26,26 +29,38 @@ export class AddCarComponent implements OnInit {
 
   addCar() {
     this.carModel.model.trim();
-    this.carModel.carPic.trim();
 
     this.carService.addCar(this.carModel)
       .subscribe((data) => {
         this.router.navigate(['cars', data.id]);
         this.carModel.id = data.id;
-        this.carDetaiService.addDetails(this.carModel.id, this.arr)
+        this.carDetaiService
+          .addDetails(this.carModel.id, this.partsArr)
+          .subscribe();
+        this.carPicService
+          .addPictures(this.carModel.id, this.picsArr)
           .subscribe();
       });
-
-
   }
 
-  addRow() {
-    const newItem = new PartDescriptionModel();
-    this.arr.push(newItem);
+  addRow(type: string) {
+    if (type == 'part') {
+      const partItem = new PartDescriptionModel();
+      this.partsArr.push(partItem);
+    }
+    else {
+      const picItem = new CarPictureModel();
+      this.picsArr.push(picItem);
+    }
   }
 
-  deleteRow(index: number) {
-    this.arr.splice(index, 1);
+  deleteRow(index: number, type: string) {
+    if (type == 'part') {
+      this.partsArr.splice(index, 1);
+    }
+    else {
+      this.picsArr.splice(index, 1);
+    }
   }
 
 }

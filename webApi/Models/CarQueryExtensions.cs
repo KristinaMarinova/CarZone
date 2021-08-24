@@ -7,6 +7,10 @@ namespace CarZone.Models
     {
         public static IQueryable<Car> FilterCars(this IQueryable<Car> query, CarFilter filter)
         {
+            if (filter.BrandId == null && filter.ColorId == null && filter.FuelId == null && filter.TransmissionId == null)
+            {
+                return query.OrderByDescending(x => x.CreatedTime);
+            }
             if (filter.BrandId.HasValue && filter.BrandId != 0)
             {
                 query = query.Where(c => c.Brand.Id == filter.BrandId);
@@ -28,7 +32,10 @@ namespace CarZone.Models
                 query = query.Where(c => c.Transmission.Id == filter.TransmissionId);
             }
 
-            return query.Skip(filter.Offset).Take(filter.Limit);
+            return query
+                .OrderByDescending(x => x.CreatedTime)
+                .Skip(filter.Offset)
+                .Take(filter.Limit);
         }
     }
 }

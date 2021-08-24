@@ -9,7 +9,6 @@ namespace CarZone.Models.DTOs
     public class CarDTO
     {
         public int Id { get; set; }
-        public string CarPic { get; set; }
         public Brand Brand { get; set; }
         public string Model { get; set; }
         public int Horsepower { get; set; }
@@ -22,6 +21,7 @@ namespace CarZone.Models.DTOs
         public double Price { get; set; }
         public int UserId { get; set; }
         public List<Part> Parts { get; set; }
+        public List<Picture> Pictures { get; set; }
 
         public static Expression<Func<Car, CarDTO>> SelectExpression
         {
@@ -34,7 +34,6 @@ namespace CarZone.Models.DTOs
                     Km = e.Km,
                     Horsepower = e.Horsepower,
                     LikesCount = e.LikesCount,
-                    CarPic = e.CarPic,
                     Price = e.Price,
                     Transmission = e.Transmission,
                     Model = e.Model,
@@ -42,7 +41,12 @@ namespace CarZone.Models.DTOs
                     Year = e.Year,
                     UserId = e.UserId,
                     Brand = e.Brand,    
-                    Parts = e.Parts.ToList()
+                    Parts = e.Parts
+                    .OrderBy(x=>x.Id)
+                    .ToList(),
+                    Pictures = e.Pictures
+                    .OrderBy(x=>x.Id)
+                    .ToList()
                 };
             }
         }

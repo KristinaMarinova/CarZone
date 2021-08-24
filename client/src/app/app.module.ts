@@ -41,6 +41,10 @@ import { PartsHistoryTableComponent } from './components/car/parts-history-table
 import { NewCarsComponent } from './components/car/new-cars/new-cars.component';
 import { AsyncSelectComponent } from './components/shared/async-select/async-select.component';
 import { AdminComponent } from './components/admin/admin/admin.component';
+import { UserResolver } from './services/resolvers/user-resolver';
+import { CarPicturesCreateTableComponent } from './components/car/car-pictures-create-table/car-pictures-create-table.component';
+import { PicturesGalleryComponent } from './components/car/pictures-gallery/pictures-gallery.component';
+import { MDBBootstrapModule } from 'angular-bootstrap-md';
 
 @NgModule({
   declarations: [
@@ -68,6 +72,8 @@ import { AdminComponent } from './components/admin/admin/admin.component';
     LikedCarsBtnComponent,
     NewCarsComponent,
     AdminComponent,
+    CarPicturesCreateTableComponent,
+    PicturesGalleryComponent,
   ],
   imports: [
     NgbModule,
@@ -78,6 +84,7 @@ import { AdminComponent } from './components/admin/admin/admin.component';
     HttpClientModule,
     FontAwesomeModule,
     BrowserAnimationsModule,
+    MDBBootstrapModule.forRoot(),
     ToastrModule.forRoot({
       timeOut: 5000,
     }),
@@ -108,6 +115,7 @@ import { AdminComponent } from './components/admin/admin/admin.component';
       useClass: TokenInterceptor,
       multi: true
     },
+    [UserResolver],
   ],
   bootstrap: [AppComponent]
 })

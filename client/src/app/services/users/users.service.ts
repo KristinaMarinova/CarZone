@@ -21,12 +21,14 @@ export class UsersService {
   private readonly token_property = 'access_token';
   loginChanged: Subject<boolean> = new Subject();
   isAdmin: Subject<boolean> = new Subject();
+  userId: number;
 
-  login(token: string, userId: string, role: string, username: string): void {
+  login(token: string, userId: number, role: string, username: string): void {
     localStorage.setItem(this.token_property, token);
-    localStorage.setItem('userId', userId);
+    localStorage.setItem('userId', userId.toString());
     localStorage.setItem('username', username);
     localStorage.setItem('role', Role[role]);
+    this.userId = userId;
     this.isAdmin.next(this.isUserAdmin());
     this.loginChanged.next(true);
   }
@@ -43,7 +45,6 @@ export class UsersService {
 
     if (this.jwtHelper.isTokenExpired(token)) {
       this.logout();
-      this
     }
 
     return token && token.length > 0;
@@ -52,15 +53,13 @@ export class UsersService {
   isUserAdmin() {
     let role = localStorage.getItem('role');
     if (role == 'Admin') {
+      this.isAdmin.next(true);
       return true;
     }
     else {
+      this.isAdmin.next(false);
       return false;
     }
-  }
-
-  getById(id: number): Observable<any> {
-    return this.http.get(`api/Users/${id}`);
   }
 
   getUserId(): number {
@@ -73,14 +72,6 @@ export class UsersService {
       return true;
     }
     return false;
-  }
-
-  editInfo(id: number, user: any): Observable<any> {
-    return this.http.put(`api/Users/${id}`, user);
-  }
-
-  uploadFile(formData): Observable<any> {
-    return this.http.post('api/Users/UploadFileAsync', formData, { reportProgress: true, observe: 'events' });
   }
 
   public getToken(): string {

@@ -26,7 +26,6 @@ export class LoginComponent {
       .subscribe(
         (data) => {
           this.userService.login(data.token, data.userId, data.role, data.username);
-          this.toastrService.success("Login success");
           this.router.navigate(['cars']);
         }
       );

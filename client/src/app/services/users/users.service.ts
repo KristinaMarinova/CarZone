@@ -6,6 +6,7 @@ import jwt_decode from 'jwt-decode';
 import { JwtHelperService } from "@auth0/angular-jwt";
 import { Router } from '@angular/router';
 import { Role } from 'src/app/models/enums/role';
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,8 @@ export class UsersService {
   constructor(
     private http: HttpClient,
     private router: Router,
-    public jwtHelper: JwtHelperService
+    public jwtHelper: JwtHelperService,
+    private toastrService: ToastrService
   ) {
   }
 
@@ -31,6 +33,7 @@ export class UsersService {
     this.userId = userId;
     this.isAdmin.next(this.isUserAdmin());
     this.loginChanged.next(true);
+    this.toastrService.success('Login success');
   }
 
   logout(): void {
